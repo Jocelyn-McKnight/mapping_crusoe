@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>About – Mapping Robinson Crusoe</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="page-wrapper">
@@ -41,10 +41,9 @@
       </div>
     </section>
 
-    <!-- Main content area -->
+    <!-- Main content area (single column) -->
     <main>
       <div class="content-wrapper">
-        <!-- LEFT: main article -->
         <article>
           <p class="article-header-kicker">Digital humanities & literary cartography</p>
           <h2 class="article-title">Why map <em>Robinson Crusoe</em>?</h2>
@@ -133,65 +132,43 @@
           </div>
         </article>
 
-        <!-- RIGHT: sidebar -->
-        <aside class="sidebar" aria-label="Project navigation and information">
-          <section class="sidebar-section">
+        <!-- Info cards section instead of sidebar -->
+        <section class="info-grid" aria-label="Project sections">
+          <article class="info-card">
             <h3>Explore the project</h3>
-            <ul class="sidebar-links">
-              <li><a href="#"><span>Project overview</span></a></li>
-              <li><a href="#"><span>Interactive island map</span></a></li>
-              <li><a href="#"><span>Global voyages</span></a></li>
-              <li><a href="#"><span>Data &amp; methodology</span></a></li>
-              <li><a href="#"><span>Credits</span></a></li>
-            </ul>
-          </section>
+            <p>
+              Read more about the project’s scope, the questions it asks, and how the maps are
+              designed.
+            </p>
+            <a href="#" class="info-card-link">Project overview</a>
+          </article>
 
-          <section class="sidebar-section">
-            <h3>Maps &amp; interfaces</h3>
-            <ul class="sidebar-links">
-              <li><a href="#"><span>Island timeline</span></a></li>
-              <li><a href="#"><span>Route comparison</span></a></li>
-              <li><a href="#"><span>Place index</span></a></li>
-            </ul>
-          </section>
+          <article class="info-card">
+            <h3>Maps &amp; data</h3>
+            <p>
+              View the interactive island map, voyage routes, and access underlying datasets and
+              documentation.
+            </p>
+            <a href="#" class="info-card-link">Maps &amp; methodology</a>
+          </article>
 
-          <section class="sidebar-section">
+          <article class="info-card">
             <h3>For teaching</h3>
-            <ul class="sidebar-links">
-              <li><a href="#"><span>Classroom activities</span></a></li>
-              <li><a href="#"><span>Assessment ideas</span></a></li>
-              <li><a href="#"><span>Downloadable worksheets</span></a></li>
-            </ul>
-          </section>
+            <p>
+              Lesson ideas, activities, and worksheets for using the project in literature and
+              digital humanities courses.
+            </p>
+            <a href="#" class="info-card-link">Teaching materials</a>
+          </article>
 
-          <section class="sidebar-section address-block">
+          <article class="info-card">
             <h3>Project context</h3>
-            <p><strong>Discipline:</strong> Digital humanities & literary studies</p>
-            <p><strong>Text:</strong> Daniel Defoe’s <em>Robinson Crusoe</em> (1719)</p>
-            <p><strong>Focus:</strong> Space, mapping, and narrative.</p>
-
-            <div class="opening-hours">
-              <p><strong>Status:</strong> In progress</p>
-              <p>Latest update: <span>2025</span></p>
-            </div>
-
-            <div class="tag-list">
-              <div class="tag">Literary cartography</div>
-              <div class="tag">Eighteenth century</div>
-              <div class="tag">Defoe</div>
-            </div>
-          </section>
-
-          <section class="sidebar-section">
-            <h3>Stay updated</h3>
-            <p>Join the mailing list to hear about new maps, data releases, and teaching materials.</p>
-            <form class="newsletter-form">
-              <label for="email">Email address</label>
-              <input type="email" id="email" placeholder="you@example.com" />
-              <button type="submit" class="primary-btn">Sign up</button>
-            </form>
-          </section>
-        </aside>
+            <p>
+              Developed as a digital humanities project in literary studies, focusing on Daniel
+              Defoe’s <em>Robinson Crusoe</em> (1719), space, mapping, and narrative.
+            </p>
+          </article>
+        </section>
       </div>
     </main>
 
