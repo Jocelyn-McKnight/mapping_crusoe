@@ -1,9 +1,4 @@
-/* =========================================================
-   Mapping Robinson Crusoe – clean base stylesheet
-   Works with the last index.html I gave you (no sidebar)
-   ========================================================= */
-
-/* ---------- Base + reset ---------- */
+/* ---------- Base styles ---------- */
 :root {
   --bg: #f5f3ea;
   --bg-alt: #ffffff;
@@ -38,16 +33,14 @@ img {
   display: block;
 }
 
-/* ---------- Layout wrapper ---------- */
+/* ---------- Layout containers ---------- */
 .page-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* =========================================================
-   HEADER & NAVIGATION
-   ========================================================= */
+/* ---------- Header & nav ---------- */
 header {
   background: #ffffff;
   border-bottom: 1px solid var(--border);
@@ -122,9 +115,7 @@ header {
   opacity: 0.9;
 }
 
-/* =========================================================
-   HERO SECTION
-   ========================================================= */
+/* ---------- Hero section ---------- */
 .hero {
   position: relative;
   background: #000;
@@ -140,7 +131,7 @@ header {
   filter: brightness(0.7);
 }
 
-/* Replace this URL with your own hero image when you’re ready */
+/* Swap this image for something of your own later */
 .hero-image-crusoe {
   background-image: url("https://images.unsplash.com/photo-1534446767764-34a3b9a5e3de?auto=format&fit=crop&w=1600&q=80");
 }
@@ -185,9 +176,7 @@ header {
   color: #f3ede5;
 }
 
-/* =========================================================
-   MAIN CONTENT
-   ========================================================= */
+/* ---------- Main content area ---------- */
 main {
   flex: 1;
 }
@@ -196,9 +185,13 @@ main {
   max-width: var(--max-width);
   margin: 0 auto 3rem;
   padding: 0 1.25rem;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+  gap: 2rem;
+  align-items: flex-start;
 }
 
-/* Article */
+/* Left / main article */
 .article-header-kicker {
   text-transform: uppercase;
   font-size: 0.8rem;
@@ -248,54 +241,97 @@ main {
   margin-top: 0.5rem;
 }
 
-/* =========================================================
-   INFO CARDS (below article)
-   ========================================================= */
-.info-grid {
-  margin-top: 2.5rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+/* Right / sidebar */
+.sidebar {
+  display: flex;
+  flex-direction: column;
   gap: 1.25rem;
 }
 
-.info-card {
+.sidebar-section {
   background: var(--bg-alt);
-  border: 1px solid var(--border);
   border-radius: 6px;
   padding: 1.25rem 1.2rem;
+  border: 1px solid var(--border);
 }
 
-.info-card h3 {
-  font-size: 1rem;
-  letter-spacing: 0.12em;
+.sidebar-section h3 {
+  font-size: 0.95rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
-.info-card p {
+.sidebar-links {
+  list-style: none;
   font-size: 0.9rem;
 }
 
-.info-card em {
-  font-style: italic;
+.sidebar-links li + li {
+  margin-top: 0.25rem;
 }
 
-.info-card-link {
-  display: inline-block;
-  margin-top: 0.6rem;
-  font-size: 0.85rem;
+.sidebar-links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-links a span {
+  font-size: 0.8rem;
+  color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.09em;
-  border-bottom: 1px solid transparent;
+  letter-spacing: 0.1em;
 }
 
-.info-card-link:hover {
-  border-bottom-color: var(--accent);
+.sidebar-links a:hover {
+  text-decoration: underline;
 }
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
+.address-block p {
+  font-size: 0.9rem;
+}
+
+.address-block p + p {
+  margin-top: 0.15rem;
+}
+
+.opening-hours {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.tag {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+}
+
+/* Newsletter form */
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 0.45rem 0.6rem;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+/* ---------- Footer ---------- */
 footer {
   border-top: 1px solid var(--border);
   padding: 1.5rem 1.25rem 2rem;
@@ -323,19 +359,21 @@ footer {
   color: var(--muted);
 }
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
+/* ---------- Responsive ---------- */
 @media (max-width: 840px) {
   .main-nav {
-    display: none; /* simple mobile – we can add a burger later if you want */
+    display: none; /* simple mobile version; add a burger later if you want */
+  }
+
+  .content-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    order: -1; /* sidebar above article on mobile */
   }
 
   .hero-image {
     height: 220px;
-  }
-
-  .info-grid {
-    grid-template-columns: 1fr;
   }
 }
