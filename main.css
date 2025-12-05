@@ -1,4 +1,9 @@
-/* ---------- Base styles ---------- */
+/* =========================================================
+   Mapping Robinson Crusoe – clean base stylesheet
+   Works with the last index.html I gave you (no sidebar)
+   ========================================================= */
+
+/* ---------- Base + reset ---------- */
 :root {
   --bg: #f5f3ea;
   --bg-alt: #ffffff;
@@ -33,14 +38,16 @@ img {
   display: block;
 }
 
-/* ---------- Layout containers ---------- */
+/* ---------- Layout wrapper ---------- */
 .page-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* ---------- Header & nav ---------- */
+/* =========================================================
+   HEADER & NAVIGATION
+   ========================================================= */
 header {
   background: #ffffff;
   border-bottom: 1px solid var(--border);
@@ -115,7 +122,9 @@ header {
   opacity: 0.9;
 }
 
-/* ---------- Hero section ---------- */
+/* =========================================================
+   HERO SECTION
+   ========================================================= */
 .hero {
   position: relative;
   background: #000;
@@ -131,7 +140,7 @@ header {
   filter: brightness(0.7);
 }
 
-/* Swap this image for something of your own later */
+/* Replace this URL with your own hero image when you’re ready */
 .hero-image-crusoe {
   background-image: url("https://images.unsplash.com/photo-1534446767764-34a3b9a5e3de?auto=format&fit=crop&w=1600&q=80");
 }
@@ -176,7 +185,9 @@ header {
   color: #f3ede5;
 }
 
-/* ---------- Main content area ---------- */
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
 main {
   flex: 1;
 }
@@ -187,7 +198,7 @@ main {
   padding: 0 1.25rem;
 }
 
-/* Article styles */
+/* Article */
 .article-header-kicker {
   text-transform: uppercase;
   font-size: 0.8rem;
@@ -237,7 +248,9 @@ main {
   margin-top: 0.5rem;
 }
 
-/* ---------- Info cards (replacing sidebar) ---------- */
+/* =========================================================
+   INFO CARDS (below article)
+   ========================================================= */
 .info-grid {
   margin-top: 2.5rem;
   display: grid;
@@ -261,7 +274,10 @@ main {
 
 .info-card p {
   font-size: 0.9rem;
-  color: var(--text);
+}
+
+.info-card em {
+  font-style: italic;
 }
 
 .info-card-link {
@@ -277,7 +293,9 @@ main {
   border-bottom-color: var(--accent);
 }
 
-/* ---------- Footer ---------- */
+/* =========================================================
+   FOOTER
+   ========================================================= */
 footer {
   border-top: 1px solid var(--border);
   padding: 1.5rem 1.25rem 2rem;
@@ -305,10 +323,12 @@ footer {
   color: var(--muted);
 }
 
-/* ---------- Responsive ---------- */
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 @media (max-width: 840px) {
   .main-nav {
-    display: none; /* simple mobile version; add a burger later if you want */
+    display: none; /* simple mobile – we can add a burger later if you want */
   }
 
   .hero-image {
