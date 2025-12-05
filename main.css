@@ -330,6 +330,146 @@ footer {
 }
 
 /* =========================================
+   COLLECTIONS LIST PAGE
+   ========================================= */
+
+.collection-intro {
+  margin-bottom: 1.5rem;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+.collection-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.1rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.collection-card-image-link img {
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.collection-card-title {
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.collection-card-title a {
+  text-decoration: none;
+}
+
+.collection-card-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.collection-card-text {
+  font-size: 0.9rem;
+  margin-bottom: 0.7rem;
+}
+
+.collection-card-link {
+  margin-top: auto;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid transparent;
+  align-self: flex-start;
+}
+
+.collection-card-link:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* =========================================
+   SINGLE COLLECTION PAGE
+   ========================================= */
+
+.collection-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+  gap: 2.25rem;
+}
+
+.map-embed {
+  margin-top: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #f0f2f5;
+}
+
+.map-embed img,
+.map-embed iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.map-caption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.meta-panel {
+  background: var(--bg-alt);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 1.25rem 1.2rem 1.4rem;
+}
+
+.meta-title {
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.meta-list {
+  font-size: 0.9rem;
+  margin-bottom: 1.1rem;
+}
+
+.meta-list div + div {
+  margin-top: 0.35rem;
+}
+
+.meta-list dt {
+  font-weight: 600;
+}
+
+.meta-list dd {
+  margin-left: 0;
+}
+
+.meta-subheading {
+  margin-top: 0.9rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.meta-panel p + p {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 960px) {
+  .collection-layout {
+    grid-template-columns: 1fr;
+  }
+
+
+/* =========================================
    RESPONSIVE
    ========================================= */
 @media (max-width: 960px) {
