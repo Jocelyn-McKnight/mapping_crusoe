@@ -338,58 +338,81 @@ body.collections-page .content-wrapper {
   background: #ffffff;
 }
 
-/* Grid of works */
+/* Grid of works – like Frans Hals highlight cards */
 .collection-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.6rem;
   margin-bottom: 3rem;
 }
 
 .work-card {
-  background: #ffffff;
-  border-radius: 10px;
-  border: 1px solid var(--border);
+  position: relative;
+  min-height: 360px;
+  border-radius: 24px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  background: #000;           /* in case image fails */
+}
+
+/* Make the image fill the whole card */
+.work-card-image-link {
+  position: absolute;
+  inset: 0;
 }
 
 .work-card-image-link img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
   object-fit: cover;
 }
 
+/* Dark gradient at the bottom, like the screenshot */
+.work-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.4) 40%,
+    rgba(0, 0, 0, 0.0) 75%
+  );
+  pointer-events: none;
+}
+
+/* Text overlay at the bottom */
 .work-card-body {
-  padding: 0.9rem 1rem 1.1rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.1rem 1.25rem 1.25rem;
+  color: #ffffff;
+  z-index: 1;                 /* above gradient */
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
-.work-card-type {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  margin-bottom: 0.25rem;
-}
-
+/* Top line – like artist name in all caps */
 .work-card-title {
-  font-size: 1rem;
-  margin-bottom: 0.15rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.work-card-title a:hover {
-  text-decoration: underline;
-}
-
-.work-card-meta {
+/* Second line – date line */
+.work-card-meta,
+.work-card-type {
   font-size: 0.8rem;
-  color: var(--muted);
-  margin-bottom: 0.5rem;
+  opacity: 0.85;
 }
 
+/* Third line – title of work / map */
 .work-card-text {
   font-size: 0.9rem;
+  margin-top: 0.2rem;
 }
 
 /* =========================================
