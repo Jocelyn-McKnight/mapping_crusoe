@@ -5,10 +5,11 @@
 
 /* ---------- Base ---------- */
 :root {
-  --bg: #f3f1ec;          /* soft neutral background */
-  --bg-alt: #ffffff;      /* panels / cards */
+  --page-bg: #ffffff;      /* overall page background */
+  --section-bg: #f3f1ec;   /* optional soft background if needed later */
+  --bg-alt: #ffffff;       /* panels / cards */
   --text: #222222;
-  --accent: #3a6a7a;      /* sea blue accent */
+  --accent: #3a6a7a;       /* sea blue accent */
   --accent-soft: #d3e2e7;
   --border: #dddddd;
   --muted: #666666;
@@ -23,7 +24,7 @@
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg);
+  background: var(--page-bg);
   color: var(--text);
   line-height: 1.6;
 }
@@ -123,7 +124,7 @@ header {
 }
 
 /* =========================================
-   HERO
+   HERO (full-width, like Frans Hals)
    ========================================= */
 .hero {
   position: relative;
@@ -184,20 +185,17 @@ header {
 }
 
 /* =========================================
-   MAIN CONTENT PANEL (default)
+   MAIN CONTENT WRAPPER (default)
    ========================================= */
 main {
   flex: 1;
 }
 
-/* Default: white card overlapping hero */
+/* Default: simple centered column (About, Collections) */
 .content-wrapper {
   max-width: var(--max-width);
-  margin: -2.2rem auto 3.5rem;    /* negative margin pulls it up over the hero */
-  padding: 2.25rem 2rem 3rem;
-  background: var(--bg-alt);
-  border-radius: 16px 16px 0 0;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+  margin: 2.5rem auto 3.5rem;
+  padding: 0 2rem 3rem;
 }
 
 /* Article styles (About + text sections) */
@@ -285,12 +283,8 @@ footer {
    ========================================= */
 
 body.collections-page .content-wrapper {
-  max-width: var(--max-width);
-  margin: 2.5rem auto 3.5rem;
-  padding: 0 2rem 3rem;
-  background: transparent;
-  box-shadow: none;
-  border-radius: 0;
+  /* same basic container as default; this rule is here
+     in case we want to tweak collections-only spacing later */
 }
 
 /* Intro */
@@ -413,7 +407,14 @@ body.collections-page .content-wrapper {
    SINGLE COLLECTION PAGE (e.g. Crusoe)
    ========================================= */
 
-.collection-layout {
+/* For single collection pages we add "collection-layout"
+   on the content wrapper: <div class="content-wrapper collection-layout"> */
+.content-wrapper.collection-layout {
+  margin: -2.2rem auto 3.5rem;
+  padding: 2.25rem 2rem 3rem;
+  background: var(--bg-alt);
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
   gap: 2.25rem;
@@ -487,26 +488,21 @@ body.collections-page .content-wrapper {
    ========================================= */
 
 @media (max-width: 960px) {
-  /* About & single-collection card */
   .content-wrapper {
-    margin-top: 0;             /* no overlap on small screens */
-    border-radius: 0;
-    box-shadow: none;
-    padding: 1.75rem 1.4rem 2.5rem;
-  }
-
-  /* Collections page */
-  body.collections-page .content-wrapper {
+    margin: 2rem auto 2.5rem;
     padding: 0 1.4rem 2.5rem;
-    margin-top: 2rem;
   }
 
   .collection-controls {
     align-items: flex-start;
   }
 
-  .collection-layout {
+  .content-wrapper.collection-layout {
+    margin-top: 0;
+    border-radius: 0;
+    box-shadow: none;
     grid-template-columns: 1fr;
+    padding: 1.75rem 1.4rem 2.5rem;
   }
 }
 
