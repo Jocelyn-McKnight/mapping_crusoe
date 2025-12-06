@@ -6,7 +6,7 @@
 /* ---------- Base ---------- */
 :root {
   --bg: #f3f1ec;          /* soft neutral background */
-  --bg-alt: #ffffff;      /* panels */
+  --bg-alt: #ffffff;      /* panels / cards */
   --text: #222222;
   --accent: #3a6a7a;      /* sea blue accent */
   --accent-soft: #d3e2e7;
@@ -138,7 +138,7 @@ header {
   filter: brightness(0.7);
 }
 
-/* swap this with your own image later if you like */
+/* Swap this with your own image later if you like */
 .hero-image-crusoe {
   background-image: url("https://images.unsplash.com/photo-1534446767764-34a3b9a5e3de?auto=format&fit=crop&w=1600&q=80");
 }
@@ -184,13 +184,13 @@ header {
 }
 
 /* =========================================
-   MAIN CONTENT PANEL
+   MAIN CONTENT PANEL (default)
    ========================================= */
 main {
   flex: 1;
 }
 
-/* This is the white “card” that overlaps the hero image */
+/* Default: white card overlapping hero */
 .content-wrapper {
   max-width: var(--max-width);
   margin: -2.2rem auto 3.5rem;    /* negative margin pulls it up over the hero */
@@ -198,12 +198,9 @@ main {
   background: var(--bg-alt);
   border-radius: 16px 16px 0 0;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
-  display: grid;
-  grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.4fr);
-  gap: 2.5rem;
 }
 
-/* Article (left column) */
+/* Article styles (About + text sections) */
 .article-header-kicker {
   text-transform: uppercase;
   font-size: 0.8rem;
@@ -254,52 +251,6 @@ main {
 }
 
 /* =========================================
-   INFO CARDS (right column)
-   ========================================= */
-.info-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 0;   /* sits flush in the right column */
-}
-
-.info-card {
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1.1rem 1.1rem 1.2rem;
-}
-
-.info-card h3 {
-  font-size: 0.95rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-
-.info-card p {
-  font-size: 0.9rem;
-  color: var(--text);
-}
-
-.info-card em {
-  font-style: italic;
-}
-
-.info-card-link {
-  display: inline-block;
-  margin-top: 0.6rem;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-bottom: 1px solid transparent;
-}
-
-.info-card-link:hover {
-  border-bottom-color: var(--accent);
-}
-
-/* =========================================
    FOOTER
    ========================================= */
 footer {
@@ -330,68 +281,136 @@ footer {
 }
 
 /* =========================================
-   COLLECTIONS LIST PAGE
+   COLLECTIONS PAGE – vertical layout
    ========================================= */
 
-.collection-intro {
-  margin-bottom: 1.5rem;
+body.collections-page .content-wrapper {
+  max-width: var(--max-width);
+  margin: 2.5rem auto 3.5rem;
+  padding: 0 2rem 3rem;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
 }
 
+/* Intro */
+.collection-header {
+  max-width: 680px;
+  margin-bottom: 1.75rem;
+}
+
+.collection-title {
+  font-size: 1.9rem;
+  margin-bottom: 0.7rem;
+}
+
+.collection-intro-text {
+  font-size: 0.95rem;
+}
+
+/* Filters + sort bar */
+.collection-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.collection-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-pill {
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.filter-pill-active {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+.collection-sort {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.collection-sort select {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+}
+
+/* Grid of works (cards like the Frans Hals collection grid) */
 .collection-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
 }
 
-.collection-card {
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
+.work-card {
+  background: #ffffff;
   border-radius: 10px;
-  padding: 1.1rem 1.1rem 1.3rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-.collection-card-image-link img {
-  border-radius: 8px;
-  margin-bottom: 0.75rem;
+.work-card-image-link img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
 }
 
-.collection-card-title {
+.work-card-body {
+  padding: 0.9rem 1rem 1.1rem;
+}
+
+.work-card-type {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+.work-card-title {
   font-size: 1rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.15rem;
 }
 
-.collection-card-title a {
-  text-decoration: none;
+.work-card-title a:hover {
+  text-decoration: underline;
 }
 
-.collection-card-meta {
-  font-size: 0.85rem;
+.work-card-meta {
+  font-size: 0.8rem;
   color: var(--muted);
   margin-bottom: 0.5rem;
 }
 
-.collection-card-text {
+.work-card-text {
   font-size: 0.9rem;
-  margin-bottom: 0.7rem;
-}
-
-.collection-card-link {
-  margin-top: auto;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-bottom: 1px solid transparent;
-  align-self: flex-start;
-}
-
-.collection-card-link:hover {
-  border-bottom-color: var(--accent);
 }
 
 /* =========================================
-   SINGLE COLLECTION PAGE
+   SINGLE COLLECTION PAGE (e.g. Crusoe)
    ========================================= */
 
 .collection-layout {
@@ -464,172 +483,36 @@ footer {
 }
 
 /* =========================================
-   COLLECTIONS PAGE – like Frans Hals grid
-   ========================================= */
-
-/* Make the collections page vertical & clean (no overlapping card) */
-body.collections-page .content-wrapper {
-  max-width: var(--max-width);
-  margin: 2.5rem auto 3.5rem;
-  padding: 0 2rem 3rem;
-  background: transparent;
-  box-shadow: none;
-  border-radius: 0;
-  display: block;
-}
-
-/* Intro */
-.collection-header {
-  max-width: 680px;
-  margin-bottom: 1.75rem;
-}
-
-.collection-title {
-  font-size: 1.9rem;
-  margin-bottom: 0.7rem;
-}
-
-.collection-intro-text {
-  font-size: 0.95rem;
-}
-
-/* Filters + sort bar */
-.collection-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.collection-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.filter-pill {
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: #ffffff;
-  padding: 0.3rem 0.9rem;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  cursor: pointer;
-}
-
-.filter-pill-active {
-  background: var(--accent);
-  color: #ffffff;
-  border-color: var(--accent);
-}
-
-.collection-sort {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-}
-
-.collection-sort select {
-  font-size: 0.85rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  border: 1px solid var(--border);
-  background: #ffffff;
-}
-
-/* Grid of works */
-.collection-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.work-card {
-  background: #ffffff;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.work-card-image-link img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.work-card-body {
-  padding: 0.9rem 1rem 1.1rem;
-}
-
-.work-card-type {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  margin-bottom: 0.25rem;
-}
-
-.work-card-title {
-  font-size: 1rem;
-  margin-bottom: 0.15rem;
-}
-
-.work-card-title a:hover {
-  text-decoration: underline;
-}
-
-.work-card-meta {
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin-bottom: 0.5rem;
-}
-
-.work-card-text {
-  font-size: 0.9rem;
-}
-
-/* Responsive tweaks */
-@media (max-width: 960px) {
-  body.collections-page .content-wrapper {
-    padding: 0 1.4rem 2.5rem;
-  }
-
-  .collection-controls {
-    align-items: flex-start;
-  }
-
-@media (max-width: 960px) {
-  .collection-layout {
-    grid-template-columns: 1fr;
-  }
-
-
-/* =========================================
    RESPONSIVE
    ========================================= */
+
 @media (max-width: 960px) {
+  /* About & single-collection card */
   .content-wrapper {
-    grid-template-columns: 1fr;
     margin-top: 0;             /* no overlap on small screens */
     border-radius: 0;
     box-shadow: none;
     padding: 1.75rem 1.4rem 2.5rem;
   }
 
-  .info-grid {
+  /* Collections page */
+  body.collections-page .content-wrapper {
+    padding: 0 1.4rem 2.5rem;
     margin-top: 2rem;
+  }
+
+  .collection-controls {
+    align-items: flex-start;
+  }
+
+  .collection-layout {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 780px) {
   .main-nav {
-    display: none; /* simple mobile version; we can add a burger later */
+    display: none; /* simple mobile – we can add a burger later if you want */
   }
 
   .top-bar {
