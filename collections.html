@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="main.css" />
 </head>
-<body>
+<body class="collections-page">
   <div class="page-wrapper">
     <!-- Header -->
     <header>
@@ -40,79 +40,103 @@
       </div>
     </section>
 
-    <!-- Main content: intro + grid of books -->
+    <!-- Main content -->
     <main>
       <div class="content-wrapper">
-        <section class="collection-intro">
+        <!-- Intro text -->
+        <section class="collection-header">
           <p class="article-header-kicker">Comparative cartographies</p>
-          <h2 class="article-title">Books and voyages in the project</h2>
-          <p>
-            Each collection focuses on one text and its map: a specific edition or travel narrative
-            that Robinson Crusoe is compared with. Click a book to view its individual map, basic
-            bibliographic details, and notes on how it relates to Crusoe.
+          <h2 class="collection-title">Books, voyages, and maps</h2>
+          <p class="collection-intro-text">
+            Each item in the collection pairs a text with a map: a specific edition, travel narrative,
+            or voyage account that <em>Robinson Crusoe</em> can be compared to. Select a book to open
+            its individual page with the map and bibliographic details.
           </p>
         </section>
 
-        <section class="collection-grid" aria-label="Map collections">
-          <!-- Example 1: Robinson Crusoe itself -->
-          <article class="collection-card">
-            <a href="collection-crusoe.html" class="collection-card-image-link">
+        <!-- Filter + sort bar -->
+        <section class="collection-controls" aria-label="Filters and sorting">
+          <div class="collection-filters">
+            <button class="filter-pill filter-pill-active" type="button">All works</button>
+            <button class="filter-pill" type="button">Travel narratives</button>
+            <button class="filter-pill" type="button">Atlases &amp; charts</button>
+            <button class="filter-pill" type="button">Editions of Crusoe</button>
+          </div>
+
+          <div class="collection-sort">
+            <label for="sort-by">Sort by</label>
+            <select id="sort-by" name="sort-by">
+              <option value="year">Year (earliest first)</option>
+              <option value="year-desc">Year (latest first)</option>
+              <option value="title">Title A–Z</option>
+              <option value="type">Type</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Grid of works -->
+        <section class="collection-grid" aria-label="Collection items">
+          <!-- Card 1 -->
+          <article class="work-card">
+            <a href="collection-crusoe.html" class="work-card-image-link">
               <img
                 src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80"
                 alt="Old book lying open on a desk."
               />
             </a>
-            <h3 class="collection-card-title">
-              <a href="collection-crusoe.html">Robinson Crusoe (1719)</a>
-            </h3>
-            <p class="collection-card-meta">
-              Daniel Defoe &middot; First edition narrative of shipwreck and island survival.
-            </p>
-            <p class="collection-card-text">
-              Core map for the project, tracing Crusoe’s route from England to the island and back.
-            </p>
-            <a href="collection-crusoe.html" class="collection-card-link">View map &amp; details</a>
+            <div class="work-card-body">
+              <p class="work-card-type">Edition of Crusoe</p>
+              <h3 class="work-card-title">
+                <a href="collection-crusoe.html"><em>Robinson Crusoe</em> (1719)</a>
+              </h3>
+              <p class="work-card-meta">Daniel Defoe · London</p>
+              <p class="work-card-text">
+                Core map for the project, tracing Crusoe’s route from England to the island and back.
+              </p>
+            </div>
           </article>
 
-          <!-- Example 2 -->
-          <article class="collection-card">
-            <a href="collection-voyage-a.html" class="collection-card-image-link">
+          <!-- Card 2 -->
+          <article class="work-card">
+            <a href="collection-voyage-a.html" class="work-card-image-link">
               <img
                 src="https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?auto=format&fit=crop&w=800&q=80"
                 alt="Detail of an antique world map."
               />
             </a>
-            <h3 class="collection-card-title">
-              <a href="collection-voyage-a.html">Voyage Collection A</a>
-            </h3>
-            <p class="collection-card-meta">
-              Author Name &middot; Travel narrative used as a source or parallel for Crusoe.
-            </p>
-            <p class="collection-card-text">
-              Map plotting the real-world route that informed Crusoe’s fictional geography.
-            </p>
-            <a href="collection-voyage-a.html" class="collection-card-link">View map &amp; details</a>
+            <div class="work-card-body">
+              <p class="work-card-type">Travel narrative</p>
+              <h3 class="work-card-title">
+                <a href="collection-voyage-a.html">Voyage Collection A</a>
+              </h3>
+              <p class="work-card-meta">Author Name · Place, Year</p>
+              <p class="work-card-text">
+                Map plotting the real-world route that informs Crusoe’s fictional geography.
+              </p>
+            </div>
           </article>
 
-          <!-- Example 3 -->
-          <article class="collection-card">
-            <a href="collection-voyage-b.html" class="collection-card-image-link">
+          <!-- Card 3 -->
+          <article class="work-card">
+            <a href="collection-voyage-b.html" class="work-card-image-link">
               <img
                 src="https://images.unsplash.com/photo-1500534314211-0a24cd03f2c0?auto=format&fit=crop&w=800&q=80"
                 alt="Close-up of a nautical chart and compass."
               />
             </a>
-            <h3 class="collection-card-title">
-              <a href="collection-voyage-b.html">Voyage Collection B</a>
-            </h3>
-            <p class="collection-card-meta">
-              Author Name &middot; Alternative island / shipwreck tradition.
-            </p>
-            <p class="collection-card-text">
-              Map focusing on a different island narrative used for comparison with Crusoe.
-            </p>
-            <a href="collection-voyage-b.html" class="collection-card-link">View map &amp; details</a>
+            <div class="work-card-body">
+              <p class="work-card-type">Travel narrative</p>
+              <h3 class="work-card-title">
+                <a href="collection-voyage-b.html">Voyage Collection B</a>
+              </h3>
+              <p class="work-card-meta">Author Name · Place, Year</p>
+              <p class="work-card-text">
+                Island-centred narrative used to compare Crusoe’s island with other imagined spaces.
+              </p>
+            </div>
           </article>
+
+          <!-- Duplicate and customise more cards as needed -->
         </section>
       </div>
     </main>
