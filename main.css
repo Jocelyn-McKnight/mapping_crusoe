@@ -1,34 +1,42 @@
 /* =========================================
    Mapping Robinson Crusoe – main stylesheet
-   Closer to Frans Hals Museum homepage
+   Layout inspired by Frans Hals Museum
    ========================================= */
 
-/* ---------- Base ---------- */
 :root {
-  --page-bg: #ffffff;
-  --text: #1a1a1a;
-  --muted: #6b6b6b;
-  --accent: #264b5a;      /* deep muted blue */
-  --border: #e0e0e0;
+  --bg: #f4efe8;
+  --card-bg: #ffffff;
+  --text-main: #222222;
+  --text-muted: #666666;
+  --accent: #1d3f6e;        /* deep blue */
+  --accent-soft: #dbe3f3;
+  --border-subtle: #ded6c9;
+
+  --radius-lg: 24px;
+  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.12);
   --max-width: 1120px;
 }
 
-* {
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--page-bg);
-  color: var(--text);
-  line-height: 1.6;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: var(--bg);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 img {
@@ -36,524 +44,595 @@ img {
   display: block;
 }
 
-.page-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* =========================================
-   HEADER & NAV
-   ========================================= */
-header {
-  background: #ffffff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  position: sticky;
-  top: 0;
-  z-index: 20;
+a:hover {
+  text-decoration: underline;
 }
 
-.top-bar {
+.container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0.9rem 1.75rem;
+  padding: 0 1.5rem;
+}
+
+/* ---------- Header & Navigation ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(244, 239, 232, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-.logo {
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-}
-
-.main-nav {
+.brand {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  font-size: 0.9rem;
+  gap: 0.75rem;
+}
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.main-nav a {
-  position: relative;
-  padding-bottom: 0.1rem;
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
-.main-nav a::after {
+.brand-title {
+  font-weight: 600;
+}
+
+.brand-subtitle {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.site-nav a {
+  position: relative;
+  padding: 0.25rem 0;
+  text-decoration: none;
+}
+
+.site-nav a::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -0.25rem;
   width: 0;
   height: 2px;
   background: var(--accent);
   transition: width 0.2s ease;
 }
 
-.main-nav a:hover::after,
-.main-nav a[aria-current="page"]::after {
+.site-nav a:hover::after,
+.site-nav a.is-active::after {
   width: 100%;
 }
 
-.primary-btn {
-  background: var(--accent);
-  color: #fff;
-  padding: 0.5rem 1.2rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+/* Mobile nav toggle */
+
+.nav-toggle {
+  display: none;
   border: none;
+  background: transparent;
+  padding: 0.25rem;
   cursor: pointer;
-  white-space: nowrap;
+}
+
+.nav-toggle-box {
+  width: 20px;
+  height: 16px;
+  position: relative;
+}
+
+.nav-toggle-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #333;
+  border-radius: 999px;
+  transition: transform 0.2s ease, opacity 0.2s ease, top 0.2s ease,
+    bottom 0.2s ease;
+}
+
+.nav-toggle-line:nth-child(1) {
+  top: 0;
+}
+
+.nav-toggle-line:nth-child(2) {
+  top: 7px;
+}
+
+.nav-toggle-line:nth-child(3) {
+  bottom: 0;
+}
+
+.site-header.is-open .nav-toggle-line:nth-child(1) {
+  top: 7px;
+  transform: rotate(45deg);
+}
+
+.site-header.is-open .nav-toggle-line:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header.is-open .nav-toggle-line:nth-child(3) {
+  bottom: 7px;
+  transform: rotate(-45deg);
+}
+
+/* ---------- Main layout ---------- */
+
+.main {
+  padding: 2.5rem 0 4rem;
+}
+
+/* Eyebrow label used in multiple sections */
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Hero / Collections slider ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.3fr);
+  gap: 2.5rem;
+  align-items: stretch;
+  margin-bottom: 4rem;
+}
+
+.hero-text h1 {
+  font-size: clamp(2.1rem, 3vw, 2.7rem);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  font-weight: 600;
+}
+
+.hero-text p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 34rem;
+}
+
+.hero-actions {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn-primary,
+.btn-ghost {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-}
-
-.primary-btn:hover {
-  opacity: 0.92;
-}
-
-/* =========================================
-   HERO – darkened image with strong text
-   ========================================= */
-.hero {
-  position: relative;
-  color: #ffffff;
-  background-color: #1b2930; /* fallback if image fails */
-}
-
-/* Background image */
-.hero-image {
-  height: 380px;
-  background-size: cover;
-  background-position: center;
-}
-
-/* Use your own image file if you want */
-.hero-image-crusoe {
-  background-image: url("https://images.unsplash.com/photo-1534446767764-34a3b9a5e3de?auto=format&fit=crop&w=1600&q=80");
-}
-
-/* Dark overlay like Frans Hals */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(0, 0, 0, 0.65) 0%,
-    rgba(0, 0, 0, 0.45) 40%,
-    rgba(0, 0, 0, 0.1) 100%
-  );
-  pointer-events: none;
-}
-
-.hero-inner {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.hero-content {
-  max-width: var(--max-width);
-  width: 100%;
-  padding: 2.6rem 1.75rem;
-  pointer-events: auto;
-}
-
-.breadcrumb {
-  font-size: 0.8rem;
-  margin-bottom: 0.6rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.breadcrumb a {
-  color: inherit;
-}
-
-.hero-title {
-  font-size: clamp(2.3rem, 3vw, 2.8rem);
-  font-weight: 700;
-  margin-bottom: 0.4rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.hero-subtitle {
-  font-size: 1rem;
-  max-width: 520px;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* =========================================
-   MAIN CONTENT WRAPPER (generic)
-   ========================================= */
-main {
-  flex: 1;
-}
-
-.content-wrapper {
-  max-width: var(--max-width);
-  margin: 2.8rem auto 3.5rem;
-  padding: 0 1.75rem;
-}
-
-/* =========================================
-   ABOUT PAGE (index.html)
-   ========================================= */
-
-body.about-page article {
-  max-width: 720px;
-  margin: 0 auto 3rem;
-}
-
-/* Article text styles */
-.article-header-kicker {
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.18em;
-  color: var(--accent);
-  margin-bottom: 0.35rem;
-}
-
-.article-title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.article-body p + p {
-  margin-top: 0.8rem;
-}
-
-.article-body ul {
-  margin-left: 1.25rem;
-  margin-top: 0.4rem;
-}
-
-.article-body li + li {
-  margin-top: 0.25rem;
-}
-
-.article-body h3 {
-  margin-top: 1.6rem;
-  margin-bottom: 0.6rem;
-  font-size: 1.15rem;
-}
-
-.article-image {
-  margin: 1.75rem 0;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.article-image img {
-  width: 100%;
-  height: auto;
-}
-
-.article-image figcaption {
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin-top: 0.5rem;
-}
-
-/* =========================================
-   COLLECTIONS PAGE (collections.html)
-   ========================================= */
-
-body.collections-page .content-wrapper {
-  /* same padding; different inner layout */
-}
-
-/* Intro */
-.collection-header {
-  max-width: 720px;
-  margin: 0 auto 1.75rem;
-}
-
-.collection-title {
-  font-size: 2rem;
-  margin-bottom: 0.7rem;
-}
-
-.collection-intro-text {
-  font-size: 0.95rem;
-}
-
-/* Controls */
-.collection-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  margin: 0 auto 1.5rem;
-  max-width: var(--max-width);
-  flex-wrap: wrap;
-}
-
-.collection-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.filter-pill {
+  padding: 0.7rem 1.4rem;
   border-radius: 999px;
-  border: 1px solid var(--border);
-  background: #ffffff;
-  padding: 0.3rem 0.9rem;
   font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.16em;
+  border: 1px solid transparent;
   cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
-.filter-pill-active {
+.btn-primary {
   background: var(--accent);
   color: #ffffff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+}
+
+.btn-ghost {
+  background: transparent;
   border-color: var(--accent);
+  color: var(--accent);
 }
 
-.collection-sort {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
 }
 
-.collection-sort select {
-  font-size: 0.85rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  border: 1px solid var(--border);
-  background: #ffffff;
-}
+/* Slider frame */
 
-/* Grid of works – like Frans Hals highlight cards */
-.collection-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.6rem;
-  margin-bottom: 3rem;
-}
-
-.work-card {
+.hero-slider {
   position: relative;
-  min-height: 360px;
-  border-radius: 24px;
+  min-height: 320px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  background: #000;           /* in case image fails */
+  background: var(--card-bg);
+  box-shadow: var(--shadow-soft);
 }
 
-/* Make the image fill the whole card */
-.work-card-image-link {
+.hero-slide {
   position: absolute;
   inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  display: flex;
+  flex-direction: column;
 }
 
-.work-card-image-link img {
+.hero-slide.is-active {
+  opacity: 1;
+}
+
+.hero-slide-image {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.hero-slide-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Dark gradient at the bottom, like the screenshot */
-.work-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.4) 40%,
-    rgba(0, 0, 0, 0.0) 75%
-  );
-  pointer-events: none;
-}
+/* Caption overlays bottom of the image like a museum label */
 
-/* Text overlay at the bottom */
-.work-card-body {
+.hero-slide-caption {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 1.1rem 1.25rem 1.25rem;
+  padding: 1.4rem 1.6rem 1.6rem;
   color: #ffffff;
-  z-index: 1;                 /* above gradient */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0.15),
+    transparent
+  );
+}
+
+.hero-slide-caption h2 {
+  font-size: 1.2rem;
+  margin: 0 0 0.3rem;
+}
+
+.hero-slide-caption p {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+/* Dots + arrows */
+
+.hero-dots {
+  position: absolute;
+  left: 1.4rem;
+  bottom: 1.6rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.35rem;
 }
 
-/* Top line – like artist name in all caps */
-.work-card-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.hero-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
 }
 
-/* Second line – date line */
-.work-card-meta,
-.work-card-type {
-  font-size: 0.8rem;
-  opacity: 0.85;
+.hero-dots button.is-active {
+  width: 16px;
+  background: #ffffff;
 }
 
-/* Third line – title of work / map */
-.work-card-text {
-  font-size: 0.9rem;
-  margin-top: 0.2rem;
+.hero-slide-control {
+  position: absolute;
+  bottom: 1.35rem;
+  right: 1.4rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
-/* =========================================
-   SINGLE COLLECTION PAGE (e.g. Crusoe)
-   ========================================= */
-/* Use: <div class="content-wrapper collection-layout"> */
+.hero-slide-control.prev {
+  right: 3.4rem;
+}
 
-.content-wrapper.collection-layout {
-  margin-top: 2.8rem;
-  margin-bottom: 3.5rem;
-  padding-bottom: 0;
+/* ---------- Welcome section (image + text touching) ---------- */
+
+.welcome {
+  margin-bottom: 4rem;
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
-  gap: 2.25rem;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+  gap: 0;
+  align-items: stretch;
 }
 
-.map-embed {
-  margin-top: 1rem;
-  border-radius: 10px;
+.welcome-image {
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
   overflow: hidden;
-  border: 1px solid var(--border);
-  background: #f0f2f5;
+  box-shadow: var(--shadow-soft);
 }
 
-.map-embed img,
-.map-embed iframe {
+.welcome-image img {
   width: 100%;
   height: 100%;
-  display: block;
+  object-fit: cover;
 }
 
-.map-caption {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  color: var(--muted);
+.welcome-text {
+  background: var(--card-bg);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  box-shadow: var(--shadow-soft);
+  padding: 2rem 2.4rem;
+  position: relative;
 }
 
-.meta-panel {
-  background: #ffffff;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  padding: 1.25rem 1.2rem 1.4rem;
+.welcome-text h2 {
+  margin: 0 0 0.8rem;
+  font-size: 1.6rem;
 }
 
-.meta-title {
-  font-size: 1.05rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 0.75rem;
-}
-
-.meta-list {
-  font-size: 0.9rem;
-  margin-bottom: 1.1rem;
-}
-
-.meta-list div + div {
-  margin-top: 0.35rem;
-}
-
-.meta-list dt {
-  font-weight: 600;
-}
-
-.meta-list dd {
-  margin-left: 0;
-}
-
-.meta-subheading {
-  margin-top: 0.9rem;
-  margin-bottom: 0.3rem;
+.welcome-text p {
   font-size: 0.95rem;
-  font-weight: 600;
+  color: var(--text-muted);
+  margin: 0 0 0.8rem;
 }
 
-.meta-panel p + p {
-  margin-top: 0.5rem;
+/* ---------- Highlights / featured collections ---------- */
+
+.highlights {
+  margin-bottom: 4rem;
 }
 
-/* =========================================
-   FOOTER
-   ========================================= */
-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 1.7rem 1.75rem 2.2rem;
-  background: #ffffff;
-  font-size: 0.85rem;
+.section-heading {
+  margin-bottom: 1.8rem;
+  max-width: 40rem;
+}
+
+.section-heading h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.5rem;
+}
+
+.section-heading p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.highlight-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.highlight-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.highlight-body {
+  padding: 1.4rem 1.5rem 1.5rem;
+}
+
+.highlight-body h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+}
+
+.highlight-body p {
+  margin: 0 0 0.9rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.highlight-link {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.highlight-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.18);
+  text-decoration: none;
+}
+
+/* ---------- Generic content pages ---------- */
+
+.page-intro {
+  max-width: 42rem;
+  margin: 0 auto 2.5rem;
+}
+
+.page-intro h1 {
+  margin: 0 0 0.85rem;
+  font-size: 1.9rem;
+}
+
+.page-intro p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+}
+
+.page-section {
+  margin-bottom: 3rem;
+}
+
+.page-section h2 {
+  margin: 0 0 0.7rem;
+  font-size: 1.35rem;
+}
+
+.page-section p {
+  margin: 0 0 0.7rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 1.8rem 0 2.2rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
 .footer-inner {
   max-width: var(--max-width);
   margin: 0 auto;
+  padding: 0 1.5rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
   justify-content: space-between;
   align-items: center;
-}
-
-.footer-links {
-  display: flex;
-  gap: 1.25rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
-.footer-links a {
-  color: var(--muted);
-}
+/* ---------- Responsive ---------- */
 
-/* =========================================
-   RESPONSIVE
-   ========================================= */
 @media (max-width: 960px) {
-  .content-wrapper {
-    margin: 2.2rem auto 3rem;
-    padding: 0 1.4rem;
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .collection-controls {
-    align-items: flex-start;
+  .welcome {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .content-wrapper.collection-layout {
-    grid-template-columns: 1fr;
+  .welcome-image {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .welcome-text {
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    margin-top: -0.8rem; /* small overlap to keep them "touching" */
+  }
+
+  .highlight-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 780px) {
-  .main-nav {
-    display: none; /* simple mobile nav for now */
+@media (max-width: 768px) {
+  .header-inner {
+    padding-inline: 1rem;
   }
 
-  .top-bar {
-    padding-inline: 1.25rem;
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    right: 1.5rem;
+    margin-top: 0.4rem;
+    padding: 0.75rem 1.2rem;
+    border-radius: 999px;
+    background: var(--card-bg);
+    box-shadow: var(--shadow-soft);
+    flex-direction: column;
+    gap: 0.7rem;
+    display: none;
   }
 
-  .hero-image {
-    height: 260px;
+  .site-header.is-open .site-nav {
+    display: flex;
   }
 
-  .hero-content {
-    padding-inline: 1.25rem;
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .hero {
+    margin-bottom: 3.25rem;
+  }
+
+  .highlights {
+    margin-bottom: 3rem;
+  }
+
+  .highlight-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-slider {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 1.9rem;
+  }
+
+  .welcome-text {
+    padding: 1.6rem 1.5rem 1.8rem;
   }
 }
