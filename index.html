@@ -1,148 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>About – Mapping Robinson Crusoe</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="main.css" />
-</head>
-<body class="about-page">
-  <div class="page-wrapper">
-    <!-- Top navigation -->
-    <header>
-      <div class="top-bar">
-        <div class="logo">Mapping Robinson Crusoe</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mapping Robinson Crusoe – Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="index.html" aria-current="page">About</a>
+  <body>
+    <!-- Header / nav used on every page -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand">
+          <div class="brand-mark">RC</div>
+          <div class="brand-text">
+            <span class="brand-title">Mapping Robinson Crusoe</span>
+            <span class="brand-subtitle">Digital Exhibit</span>
+          </div>
+        </a>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span class="nav-toggle-box">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+          </span>
+        </button>
+
+        <nav class="site-nav">
+          <a href="index.html" class="is-active">Home</a>
+          <a href="robinson-crusoe.html">Robinson Crusoe</a>
           <a href="collections.html">Collections</a>
-          <a href="sources.html">Sources</a>
-          <a href="teaching.html">Teaching</a>
+          <a href="mapping.html">Mapping</a>
+          <a href="about.html">About the project</a>
         </nav>
-
-        <a href="collections.html" class="primary-btn">View maps</a>
       </div>
     </header>
 
-    <!-- Hero image + title -->
-    <section class="hero">
-      <div class="hero-image hero-image-crusoe"></div>
-      <div class="hero-inner">
-        <div class="hero-content">
-          <div class="breadcrumb">
-            <a href="index.html">Home</a> / <span>About the project</span>
+    <main class="main">
+      <div class="container">
+        <!-- 1. Hero / collections slider -->
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-text">
+            <p class="eyebrow">Digital exhibit</p>
+            <h1 id="hero-title">Mapping Robinson Crusoe and its sources</h1>
+            <p>
+              This site explores the texts, places, and routes that shaped
+              <em>Robinson Crusoe</em>. Each “collection” gathers a cluster of
+              potential sources, from travel narratives to maps and shipwreck
+              stories.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn-primary" href="collections.html">
+                Explore collections
+              </a>
+              <a class="btn-ghost" href="mapping.html"> View the map </a>
+            </div>
           </div>
-          <h1 class="hero-title">About the project</h1>
-          <p class="hero-subtitle">
-            A digital humanities project tracing the journeys, islands, and imagined geographies of
-            <em>Robinson Crusoe</em>.
-          </p>
-        </div>
-      </div>
-    </section>
 
-    <!-- Main content area: ONE column -->
-    <main>
-      <div class="content-wrapper">
-        <article>
-          <p class="article-header-kicker">Digital humanities &amp; literary cartography</p>
-          <h2 class="article-title">Why map <em>Robinson Crusoe</em>?</h2>
+          <!-- Slider: each slide is a potential source collection -->
+          <div
+            class="hero-slider"
+            aria-label="Featured collections from the exhibit"
+          >
+            <div class="hero-slide is-active">
+              <div class="hero-slide-image">
+                <img
+                  src="images/collection-travel-narratives.jpg"
+                  alt="Old printed travel narratives laid open on a table."
+                />
+              </div>
+              <div class="hero-slide-caption">
+                <p class="eyebrow">Collection</p>
+                <h2>Travel narratives</h2>
+                <p>
+                  Printed voyages and shipwreck accounts that offered Defoe
+                  ready-made plots, character types, and maritime detail.
+                </p>
+              </div>
+            </div>
 
-          <div class="article-body">
-            <p>
-              <em>Robinson Crusoe</em> (1719) is one of the most influential travel narratives in
-              English literature. It draws on real-world voyage literature while imagining an island,
-              shipwreck, and return journey that have shaped how readers picture the “desert island”
-              for over three hundred years.
-            </p>
+            <div class="hero-slide">
+              <div class="hero-slide-image">
+                <img
+                  src="images/collection-geographies.jpg"
+                  alt="Early modern map fragments with coastlines and compass roses."
+                />
+              </div>
+              <div class="hero-slide-caption">
+                <p class="eyebrow">Collection</p>
+                <h2>Geographies & atlases</h2>
+                <p>
+                  Maps and chorographies that position Crusoe’s island within
+                  eighteenth-century understandings of the Atlantic world.
+                </p>
+              </div>
+            </div>
 
-            <p>
-              <strong>Mapping Robinson Crusoe</strong> explores how space, movement, and location
-              work in the novel. The project plots key scenes onto interactive maps, compares them
-              with historical travel accounts, and highlights the tensions between real geography and
-              fictional space.
-            </p>
+            <div class="hero-slide">
+              <div class="hero-slide-image">
+                <img
+                  src="images/collection-devotional.jpg"
+                  alt="Devotional book with marginal notes and a simple cross."
+                />
+              </div>
+              <div class="hero-slide-caption">
+                <p class="eyebrow">Collection</p>
+                <h2>Devotional & conduct books</h2>
+                <p>
+                  Religious manuals and moral treatises that echo Crusoe’s
+                  spiritual reflections and rhetoric of providence.
+                </p>
+              </div>
+            </div>
 
-            <figure class="article-image">
-              <img
-                src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1600&q=80"
-                alt="Old nautical chart with islands and coastlines."
-              />
-              <figcaption>
-                Early-modern style nautical mapping, similar to charts Crusoe’s readers might have imagined.
-              </figcaption>
-            </figure>
+            <!-- Slider controls -->
+            <div class="hero-dots" aria-hidden="true">
+              <button data-slide="0" class="is-active"></button>
+              <button data-slide="1"></button>
+              <button data-slide="2"></button>
+            </div>
 
-            <h3>Project questions</h3>
-            <p>
-              This project asks how cartographic visualisation can change our reading of the novel:
-            </p>
-            <ul>
-              <li>Where exactly can we place Crusoe’s island on a modern map?</li>
-              <li>
-                How does Defoe combine real Atlantic and South American geographies with imagined
-                spaces?
-              </li>
-              <li>
-                What happens when we layer the novel against the travel narratives it draws on?
-              </li>
-            </ul>
-
-            <h3>Methods</h3>
-            <p>
-              The project brings together close reading, historical research, and digital mapping:
-            </p>
-            <ul>
-              <li>Encoding locations and routes mentioned in the text.</li>
-              <li>
-                Comparing Crusoe’s route with seventeenth- and eighteenth-century travel accounts.
-              </li>
-              <li>Visualising uncertainty and ambiguity in place references.</li>
-              <li>Designing maps for both scholarly use and classroom teaching.</li>
-            </ul>
-
-            <figure class="article-image">
-              <img
-                src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80"
-                alt="Hands pointing at different locations on a world map."
-              />
-              <figcaption>
-                The interface allows users to explore Crusoe’s movements across oceans and islands.
-              </figcaption>
-            </figure>
-
-            <h3>Who is this for?</h3>
-            <p>
-              The site is designed for students, teachers, and researchers interested in
-              eighteenth-century literature, cartography, and digital humanities. It can be used:
-            </p>
-            <ul>
-              <li>In literature courses to discuss space, colonialism, and travel writing.</li>
-              <li>In digital humanities courses as a case study in literary mapping.</li>
-              <li>By researchers as a jumping-off point for further work on Defoe and geography.</li>
-            </ul>
-
-            <p>
-              As the project develops, new maps, data, and teaching materials will be added. The goal
-              is not to fix one “true” Crusoe map, but to make visible how many different ways the
-              novel can be placed on the globe.
-            </p>
+            <button
+              class="hero-slide-control prev"
+              type="button"
+              aria-label="Previous collection"
+              data-slider="prev"
+            >
+              ‹
+            </button>
+            <button
+              class="hero-slide-control next"
+              type="button"
+              aria-label="Next collection"
+              data-slider="next"
+            >
+              ›
+            </button>
           </div>
-        </article>
+        </section>
+
+        <!-- 2. Welcome section: image + text touching, like Frans Hals page -->
+        <section class="welcome" id="welcome">
+          <div class="welcome-image">
+            <img
+              src="images/welcome-island.jpg"
+              alt="Detail of a map showing an isolated island with surrounding sea."
+            />
+          </div>
+
+          <article class="welcome-text">
+            <p class="eyebrow">Welcome</p>
+            <h2>Welcome to the Mapping Robinson Crusoe project</h2>
+            <p>
+              This digital exhibit traces how <em>Robinson Crusoe</em> emerges
+              from a dense network of earlier texts, maps, and genres. Instead
+              of reading the novel in isolation, the site invites you to move
+              laterally between possible sources.
+            </p>
+            <p>
+              Each collection gathers related materials—travel narratives,
+              geographies, devotional works, and more. The mapping interface
+              plots these traces onto historical geographies, highlighting how
+              Crusoe’s imagined journeys intersect with real routes, ports, and
+              coastlines.
+            </p>
+            <p>
+              Use the navigation above to learn more about the novel itself,
+              browse the collections, and explore the interactive map that ties
+              them together.
+            </p>
+          </article>
+        </section>
+
+        <!-- 3. Highlights section: featured collections -->
+        <section class="highlights" aria-labelledby="highlights-title">
+          <header class="section-heading">
+            <p class="eyebrow">Highlights</p>
+            <h2 id="highlights-title">Featured collections</h2>
+            <p>
+              A few starting points if you are new to the project. Each highlight
+              links to a fuller collections page with bibliographic detail and
+              interpretive notes.
+            </p>
+          </header>
+
+          <div class="highlight-grid">
+            <a href="collections.html#travel-narratives" class="highlight-card">
+              <img
+                src="images/highlight-travel.jpg"
+                alt="Close-up of printed pages from an early travel book."
+              />
+              <div class="highlight-body">
+                <h3>Shipwreck & travel narratives</h3>
+                <p>
+                  Texts that offer Crusoe’s basic scenario—voyage, disaster, and
+                  survival on a remote shore.
+                </p>
+                <span class="highlight-link">View collection →</span>
+              </div>
+            </a>
+
+            <a href="collections.html#castaway-motifs" class="highlight-card">
+              <img
+                src="images/highlight-castaway.jpg"
+                alt="Illustration of a castaway figure on a small beach."
+              />
+              <div class="highlight-body">
+                <h3>Castaway motifs</h3>
+                <p>
+                  Stories and images of solitary figures, islands, and improvised
+                  shelters that prefigure Crusoe.
+                </p>
+                <span class="highlight-link">View collection →</span>
+              </div>
+            </a>
+
+            <a href="collections.html#atlantic-maps" class="highlight-card">
+              <img
+                src="images/highlight-atlantic.jpg"
+                alt="Detail of an eighteenth-century Atlantic chart."
+              />
+              <div class="highlight-body">
+                <h3>Atlantic cartographies</h3>
+                <p>
+                  Charts and atlases that anchor Crusoe’s journeys in specific
+                  sea routes and trading networks.
+                </p>
+                <span class="highlight-link">View collection →</span>
+              </div>
+            </a>
+          </div>
+        </section>
       </div>
     </main>
 
-    <!-- Footer -->
-    <footer>
+    <footer class="site-footer">
       <div class="footer-inner">
         <span>© 2025 Mapping Robinson Crusoe</span>
-        <div class="footer-links">
-          <a href="contact.html">Contact</a>
-          <a href="#">Accessibility</a>
-          <a href="#">Imprint</a>
-        </div>
+        <span>Created as a digital exhibit project</span>
       </div>
     </footer>
-  </div>
-</body>
+
+    <!-- Minimal JS: nav toggle + slider -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile nav
+        const header = document.querySelector(".site-header");
+        const navToggle = document.querySelector(".nav-toggle");
+
+        if (navToggle) {
+          navToggle.addEventListener("click", () => {
+            header.classList.toggle("is-open");
+          });
+        }
+
+        // Hero slider
+        const slides = Array.from(document.querySelectorAll(".hero-slide"));
+        const dots = Array.from(
+          document.querySelectorAll(".hero-dots button")
+        );
+        const prevBtn = document.querySelector('[data-slider="prev"]');
+        const nextBtn = document.querySelector('[data-slider="next"]');
+
+        if (!slides.length) return;
+
+        let current = 0;
+        let timerId = null;
+
+        function showSlide(index) {
+          slides[current].classList.remove("is-active");
+          dots[current].classList.remove("is-active");
+          current = (index + slides.length) % slides.length;
+          slides[current].classList.add("is-active");
+          dots[current].classList.add("is-active");
+        }
+
+        function next() {
+          showSlide(current + 1);
+        }
+
+        function prev() {
+          showSlide(current - 1);
+        }
+
+        function startAuto() {
+          stopAuto();
+          timerId = setInterval(next, 8000);
+        }
+
+        function stopAuto() {
+          if (timerId) clearInterval(timerId);
+        }
+
+        dots.forEach((dot, index) => {
+          dot.addEventListener("click", () => {
+            showSlide(index);
+            startAuto();
+          });
+        });
+
+        if (nextBtn) {
+          nextBtn.addEventListener("click", () => {
+            next();
+            startAuto();
+          });
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener("click", () => {
+            prev();
+            startAuto();
+          });
+        }
+
+        // Start automatic cycling
+        startAuto();
+      });
+    </script>
+  </body>
 </html>
