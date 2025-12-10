@@ -66,15 +66,80 @@
         <section class="page-section">
           <h2>Methodology</h2>
           <p>
-            yay methodology
+              The methodology for this project adapts the method described by Gabay and Vitali in their 2019 paper
+              “A Theatre of Places: Mapping Seventeenth-Century French Theatre.” The first step was to build a small
+                corpus. There are no fixed rules for corpus size, but Reppen notes that as long as a corpus captures
+              “enough of the language for accurate representation” and can answer the research questions, it is
+              sufficient (Reppen, 2022, p. 14). For this project, I use the full text of <em>Robinson Crusoe</em>
+              together with four additional travel narratives. Taken together, these texts provide enough data to make
+              a claims about whether there are geographical and travel similarities with <em>Robinson Crusoe</em>,
+               while not attempting to represent all travel accounts ever. Following Gabay and Vitali’s emphasis
+              on a clean corpus, I worked with plain-text editions from Project Gutenberg so that the automatic
+              extraction and mapping pipeline would not be confused by markup or poor OCR.
+          </p>
+          <p>
+            I also implemented a spelling normalisation step using <code>pyspellchecker</code>, which works token by
+            token. Because regularisation is so finicky with historical language data, I designed the function to be
+             extremely conservative. any word that begins with a capital letter (including non-standard spellings of
+            names and places) was forbidden to the code. Only lower-case forms are candidates for correction. As someone
+            coming from Old English studies, I am very aware of the risks of over-aggressive lemmatisers and
+            tokenisers, so preserving capitalisation was essential. 
+          </p>
+          <p>
+            The core of the workflow is Named Entity Recognition (NER) and gazetteering. Using spaCy’s
+            English model (<code>en_core_web_sm</code>), I run NER over the original text of each file and collect all
+            entities with labels in {GPE, LOC, FAC} as candidate locations. For each candidate I stored the filename,
+            the order it appeared, the character start and end finsih, and its latitude and longitude. All of this 
+            information was written
+            in a single CSV file, which functions as a gazetteer, which is a fancy word for a geographic index. 
+          </p>
+          <p>
+            The next step is geocoding. I use the Nominatim service (OpenStreetMap) with <code>geopy</code> to assign
+            coordinates to each place string, with a small cache to avoid repeats Fictional places are
+            handled separately: I maintain a list of names such as “Brobdingnag” and “Glubbdubdrib” and assign them
+            fixed coordinates on a single “fictional island” so that they appear on the map but are visually distinct
+            from real-world locations. This follows Gabay and Vitali’s strategy of hand-coding difficult
+            or non-real places. There is a whole literature about handelling fictional places in mapping, but for simplicity, 
+            I decided to just stick with Gabby and Vitali's methodology. 
+          </p>
+          <p>
+            From the gazetteer, I started playing around with movement. Using the order index in each text, I built a
+          separate csv file that simply links one place to the next in reading order. I then used Folium to draw
+          lines between those points, so each narrative turns into a kind of path across the map. At one point I
+          tried to put all of these lines on at once to make a big web of connections. It did work, but the map quickly 
+          to noisy and I had to remove them (much sadness).
+          </p>
+          <p>
+            I did not want to use any map; I wanted to use a map that would be semi-time accurate and so I picked the 1790
+            Cassini world map. This was a great decision when considering the design of the project, but the computer did 
+            not agree at first. The original Cassini file needed to be converted and resized. Then the geographic boundaries 
+            had to be set by hand, and I spent a lot of time tweaking the image.
           </p>
         </section>
 
-        <!-- limitations -->
         <section class="page-section">
           <h2>The Problem</h2>
           <p>
-            and there were so many
+           The biggest problem was the data. After processing the text files and separating just the locations out I had 13673
+            locations to work with. This is not a lot of data for a corpus linguistics study but it is quite substantial for
+            a mapping project and a digital humanities project that is attempting to intervene with a literary argument. As the
+            maps stand, they are not authoritative enough that one can answer the research question that was posed. If the data
+            was more organized and the user could be certain that the locations were accurate, then they could be used. But this
+            is not the case.
+          </p>
+          <p>
+           It also came to my realization far too late in the game that the model would not just take out the locations that
+            the characters visited. It would take all locations mentioned, even the ones that were never visited. This can explain
+            many of the strange location dots on almost all of the map. As for the other strange locations, there could be a few
+            factors contributing. The capitalization in 18th century literature could be one of them. On Project Gutenberg there
+            less "random" capitals then in the more faithful editions, but there are still some. There also could be a name mentioned
+            that happens to be the same as a town or a village. Ultimately. it is hard to trust the map without having a careful
+            human reader verifying the NER's work.
+          </p>
+          <p>
+            The last and least devastating problem for this project is the access to clean txts of the primary sources. As some
+            of the potential sources for Robinson Crusoe are semi-obscure and less well documented than others, it makes sense why
+            finding a clean version is difficult. Nevertheless, we must endure.
           </p>
         </section>
 
