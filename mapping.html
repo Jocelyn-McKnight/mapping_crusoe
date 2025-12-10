@@ -1,1 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mapping Process</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand">
+          <div class="brand-mark">RC</div>
+          <div class="brand-text">
+            <span class="brand-title">Mapping Robinson Crusoe</span>
+            <span class="brand-subtitle">Digital Exhibit</span>
+          </div>
+        </a>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span class="nav-toggle-box">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+          </span>
+        </button>
+
+        <nav class="site-nav">
+          <a href="index.html">Home</a>
+          <a href="comparative.html">Comparative Map</a>
+          <a href="collections.html">Collections</a>
+          <a href="mapping.html" class="is-active">Mapping</a>
+          <a href="about.html">About the project</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <!-- Intro -->
+        <section class="page-intro">
+          <p class="eyebrow">Mapping</p>
+          <h1>How the mapping was done</h1>
+          <p>
+            This page is centered on the mapping process. Everything from the Methodology, the code, the data, and
+            all the issues with this project. As is common in digital humanities, this project fits into the lineage
+            of "failure studies", however there are great bones and the problem can really be summarized as "unclean data".
+          </p>
+        </section>
+
+
+
+        <!-- Methodology section -->
+        <section class="page-section">
+          <h2>Methodology</h2>
+          <p>
+            yay methodology
+          </p>
+        </section>
+
+        <!-- limitations -->
+        <section class="page-section">
+          <h2>The Problem</h2>
+          <p>
+            and there were so many
+          </p>
+        </section>
+
+<section class="page-section">
+  <h2>Code</h2>
+  <p>
+    Please enjoy the code. This is a copy of the original code as that was done on google collab so I could get some guidence.
+    Please see the acknowdgement section for more information on that.
+  </p>
+
+  <p>
+    <a
+      class="btn-ghost"
+      href="code/mapping_workflow.py"
+      download
+    >
+      Download full mapping script (.py)
+    </a>
+  </p>
+
+     <div class="code-block">
+  <code>
+# ============================================
+# 0. Install required libraries
+# ============================================
+!pip install pyspellchecker
+!pip install spacy
+!python -m spacy download en_core_web_sm
+!pip install folium
+
+# ============================================
+# 1. Imports
+# ============================================
+import os
+import re
+import csv
+import json
+import folium
+
+import spacy
+from spellchecker import SpellChecker
+from geopy.geocoders import Nominatim
+
+
+# ============================================
+# 2. Config
+# ============================================
+spacy_model_name = "en_core_web_sm"
+place_labels = {"GPE", "LOC", "FAC"}
+
+input_folder = "/content/workdir/input"
+output_folder = "/content/workdir/output"
+os.makedirs(output_folder, exist_ok=True)
+
+csv_path = os.path.join(output_folder, "locations.csv")
+
+# fictional island for Swift etc.
+FICTIONAL_ISLAND_LAT = 10.0   # change if you like
+FICTIONAL_ISLAND_LON = -140.0
+
+fictional_places = {
+    "Brobdingnag",
+    "Glubbdubdrib",
+    # add more here
+}
+
+# ============================================
+# 3. Load input .txt files
+# ============================================
+files_in = [f for f in os.listdir(input_folder) if f.lower().endswith(".txt")]
+
+if not files_in:
+    print("No .txt files in", input_folder)
+else:
+    print(f"Found {len(files_in)} file(s):", files_in)
+
+# ============================================
+# 4. Spelling normalisation
+#    (skip capital words, so Sonning stays Sonning)
+# ============================================
+word_re = re.compile(r"\w+", flags=re.UNICODE)
+spell = SpellChecker(distance=1)
+
+
+def apply_case_pattern(src, tgt):
+    if src.isupper():
+        return tgt.upper()
+    if src[0].isupper() and src[1:].islower():
+        return tgt.capitalize()
+    return tgt
+
+
+def normalise_spelling(text):
+    def fix(match):
+        w = match.group(0)
+
+        # do not change capital words (names, etc.)
+        if w[0].isupper():
+            return w
+
+        lw = w.lower()
+
+        # keep if known
+        if lw in spell:
+            return w
+
+        corr = spell.correction(lw)
+        if not corr:
+            return w
+
+        return apply_case_pattern(w, corr)
+
+    return word_re.sub(fix, text)
+
+# ============================================
+# 5. Load spaCy model
+# ============================================
+print("\nLoading spaCy model:", spacy_model_name)
+nlp = spacy.load(spacy_model_name)
+
+# ============================================
+# 6. Geocoder (geopy)
+#    - timeout
+#    - fictional names to island
+#    - cache only good coords
+# ============================================
+geolocator = Nominatim(user_agent="historical_ner_geocoder")
+geo_cache = {}  # place_text -> (lat, lon)
+
+
+def geocode_place(name):
+    """Return (lat, lon) for a place string, or (None, None)."""
+
+    # cache first
+    if name in geo_cache:
+        return geo_cache[name]
+
+    # fictional names first
+    if name in fictional_places:
+        coords = (FICTIONAL_ISLAND_LAT, FICTIONAL_ISLAND_LON)
+        geo_cache[name] = coords
+        return coords
+
+    # real-world geocode
+    try:
+        location = geolocator.geocode(name, timeout=5)
+    except Exception as e:
+        print("  Geocoding error for", name, ":", e)
+        return (None, None)
+
+    if location is None:
+        return (None, None)
+
+    coords = (location.latitude, location.longitude)
+
+    # cache only good coords
+    geo_cache[name] = coords
+    return coords
+
+# ============================================
+# 7. Apply NER to each file (on ORIGINAL text)
+#    then save normalised text
+#    plus extra rule for capital words not PERSON
+# ============================================
+all_rows = []
+
+for name in files_in:
+    in_path = os.path.join(input_folder, name)
+    print(f"\nProcessing: {in_path}")
+
+    # read ORIGINAL text
+    with open(in_path, "r", encoding="utf-8") as f:
+        orig_text = f.read()
+
+    # ---- 7a. NER on original text ----
+    doc = nlp(orig_text)
+    order_index = 1
+
+    # record place strings already added from NER
+    place_strings = set()
+
+    # NER places
+    for ent in doc.ents:
+        if ent.label_ in place_labels:
+            place_text = ent.text
+            lat, lon = geocode_place(place_text)
+
+            all_rows.append({
+                "filename": name,
+                "order_index": order_index,
+                "place_text": place_text,
+                "char_start": ent.start_char,   # offsets in ORIGINAL text
+                "char_end": ent.end_char,
+                "latitude": lat,
+                "longitude": lon,
+            })
+            place_strings.add(place_text)
+            order_index += 1
+
+    print("  Found", order_index - 1, "NER place entities in original text.")
+
+    # ---- 7b. extra rule: capitalised PROPN not PERSON ----
+
+    # month names we do not want as places
+    MONTH_NAMES = {
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    }
+
+    # collect token index ranges for PERSON entities
+    person_ranges = []
+    for ent in doc.ents:
+        if ent.label_ == "PERSON":
+            person_ranges.append(range(ent.start, ent.end))
+
+    def token_in_person(tok_i):
+        return any(tok_i in r for r in person_ranges)
+
+    # track extra capital candidates we already added
+    extra_capitals = set()
+
+    for token in doc:
+        t = token.text
+
+        if not t:
+            continue
+
+        # must start with capital
+        if not t[0].isupper():
+            continue
+
+        # simple: letters only
+        if not t.isalpha():
+            continue
+
+        # skip "I"
+        if t == "I":
+            continue
+
+        # skip if in a PERSON span
+        if token_in_person(token.i):
+            continue
+
+        # skip if already a NER place string
+        if t in place_strings:
+            continue
+
+        # skip if already added by this rule
+        if t in extra_capitals:
+            continue
+
+        # skip single-letter tokens
+        if len(t) == 1:
+            continue
+
+        # must be a proper noun (cuts It, The, When, etc.)
+        if token.pos_ != "PROPN":
+            continue
+
+        # skip months
+        if t in MONTH_NAMES:
+            continue
+
+        # if we reach here, treat it as candidate place for manual work
+        all_rows.append({
+            "filename": name,
+            "order_index": order_index,
+            "place_text": t,
+            "char_start": token.idx,
+            "char_end": token.idx + len(t),
+            "latitude": None,
+            "longitude": None,
+        })
+        extra_capitals.add(t)
+        order_index += 1
+
+    print("  Total entities (NER + capital PROPN rule):", order_index - 1)
+
+# ============================================
+# 8. Save CSV (with coordinates)
+# ============================================
+all_rows.sort(key=lambda r: (r["filename"], r["order_index"]))
+
+with open(csv_path, "w", encoding="utf-8", newline="") as f:
+    writer = csv.DictWriter(
+        f,
+        fieldnames=[
+            "filename",
+            "order_index",
+            "place_text",
+            "char_start",
+            "char_end",
+            "latitude",
+            "longitude",
+        ],
+    )
+    writer.writeheader()
+    for row in all_rows:
+        writer.writerow(row)
+
+print("\nSaved CSV to:", csv_path)
+print("\n✅ All done.")
+
+# ============================================
+# 9. Make map from CSV (unchanged)
+# ============================================
+output_folder = "/content/workdir/output"
+csv_path = os.path.join(output_folder, "locations.csv")
+map_path = os.path.join(output_folder, "locations_map.html")
+
+points = []
+
+with open(csv_path, "r", encoding="utf-8") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        lat = row.get("latitude")
+        lon = row.get("longitude")
+        place = row.get("place_text", "")
+        fname = row.get("filename", "")
+        order = row.get("order_index", "")
+
+        # skip rows with missing coords
+        if not lat or not lon or lat == "None" or lon == "None":
+            continue
+
+        try:
+            lat = float(lat)
+            lon = float(lon)
+        except ValueError:
+            continue
+
+        points.append({
+            "lat": lat,
+            "lon": lon,
+            "place": place,
+            "filename": fname,
+            "order": order,
+        })
+
+print(f"Loaded {len(points)} point(s) with coordinates.")
+
+if not points:
+    print("No valid coordinates in CSV. Stop.")
+else:
+    mean_lat = sum(p["lat"] for p in points) / len(points)
+    mean_lon = sum(p["lon"] for p in points) / len(points)
+
+    m = folium.Map(location=[mean_lat, mean_lon], zoom_start=4)
+
+    for p in points:
+        popup_text = (
+            f"{p['place']}<br>"
+            f"file: {p['filename']}<br>"
+            f"order: {p['order']}"
+        )
+        folium.Marker(
+            location=[p["lat"], p["lon"]],
+            popup=popup_text,
+        ).add_to(m)
+
+    m.save(map_path)
+    print("Saved map to:", map_path)
+
+    m  # show in notebook
+
+
+# ============================================
+# 9a. Build routes CSV: links between places
+# ============================================
+locations_path = csv_path  # same as before
+routes_path = os.path.join(output_folder, "routes.csv")
+
+# load locations with real coords
+loc_rows = []
+with open(locations_path, "r", encoding="utf-8") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        lat = row.get("latitude")
+        lon = row.get("longitude")
+
+        # skip rows with missing coords
+        if not lat or not lon or lat == "None" or lon == "None":
+            continue
+
+        try:
+            row["latitude"] = float(lat)
+            row["longitude"] = float(lon)
+            row["order_index"] = int(row["order_index"])
+        except ValueError:
+            continue
+
+        loc_rows.append(row)
+
+# group by filename
+by_file = {}
+for row in loc_rows:
+    fname = row["filename"]
+    by_file.setdefault(fname, []).append(row)
+
+# build segments
+route_rows = []
+
+for fname, rows in by_file.items():
+    # sort by order_index inside each file
+    rows.sort(key=lambda r: r["order_index"])
+
+    # link each place to the next one
+    for i in range(len(rows) - 1):
+        a = rows[i]
+        b = rows[i + 1]
+
+        route_rows.append({
+            "filename": fname,
+            "from_order": a["order_index"],
+            "to_order": b["order_index"],
+            "from_place": a["place_text"],
+            "to_place": b["place_text"],
+            "from_latitude": a["latitude"],
+            "from_longitude": a["longitude"],
+            "to_latitude": b["latitude"],
+            "to_longitude": b["longitude"],
+        })
+
+print(f"Built {len(route_rows)} route segment(s).")
+
+# save routes CSV
+with open(routes_path, "w", encoding="utf-8", newline="") as f:
+    writer = csv.DictWriter(
+        f,
+        fieldnames=[
+            "filename",
+            "from_order",
+            "to_order",
+            "from_place",
+            "to_place",
+            "from_latitude",
+            "from_longitude",
+            "to_latitude",
+            "to_longitude",
+        ],
+    )
+    writer.writeheader()
+    for r in route_rows:
+        writer.writerow(r)
+
+print("Saved routes CSV to:", routes_path)
+
+
+# ============================================
+# 9b. Make map from CSV (markers + lines)
+# ============================================
+output_folder = "/content/workdir/output"
+csv_path = os.path.join(output_folder, "locations.csv")
+map_path = os.path.join(output_folder, "locations_map.html")
+
+points = []
+
+with open(csv_path, "r", encoding="utf-8") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        lat = row.get("latitude")
+        lon = row.get("longitude")
+        place = row.get("place_text", "")
+        fname = row.get("filename", "")
+        order = row.get("order_index", "")
+
+        # skip rows with missing coords
+        if not lat or not lon or lat == "None" or lon == "None":
+            continue
+
+        try:
+            lat = float(lat)
+            lon = float(lon)
+            order_int = int(order)
+        except ValueError:
+            continue
+
+        points.append({
+            "lat": lat,
+            "lon": lon,
+            "place": place,
+            "filename": fname,
+            "order": order_int,
+        })
+
+print(f"Loaded {len(points)} point(s) with coordinates.")
+
+if not points:
+    print("No valid coordinates in CSV. Stop.")
+else:
+    # center on mean
+    mean_lat = sum(p["lat"] for p in points) / len(points)
+    mean_lon = sum(p["lon"] for p in points) / len(points)
+
+    m = folium.Map(location=[mean_lat, mean_lon], zoom_start=4)
+
+    # markers
+    for p in points:
+        popup_text = (
+            f"{p['place']}<br>"
+            f"file: {p['filename']}<br>"
+            f"order: {p['order']}"
+        )
+        folium.Marker(
+            location=[p["lat"], p["lon"]],
+            popup=popup_text,
+        ).add_to(m)
+
+    # lines: one path per file, in text order
+    paths_by_file = {}
+    for p in points:
+        paths_by_file.setdefault(p["filename"], []).append(p)
+
+    for fname, plist in paths_by_file.items():
+        plist.sort(key=lambda x: x["order"])
+        coords = [(p["lat"], p["lon"]) for p in plist]
+
+        # draw a line if at least two points
+        if len(coords) >= 2:
+            folium.PolyLine(
+                locations=coords,
+                tooltip=fname,
+            ).add_to(m)
+
+    m.save(map_path)
+    print("Saved map to:", map_path)
+
+    m  # show in notebook
+
+
+# ============================================
+# 10. Make interactive map with per-text layers
+# ============================================
+output_folder = "/content/workdir/output"
+csv_path = os.path.join(output_folder, "locations.csv")
+map_path = os.path.join(output_folder, "locations_map.html")
+
+points = []
+
+with open(csv_path, "r", encoding="utf-8") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        lat = row.get("latitude")
+        lon = row.get("longitude")
+        place = row.get("place_text", "")
+        fname = row.get("filename", "")
+        order = row.get("order_index", "")
+
+        # skip rows with missing coords
+        if not lat or not lon or lat == "None" or lon == "None":
+            continue
+
+        try:
+            lat = float(lat)
+            lon = float(lon)
+            order_int = int(order)
+        except ValueError:
+            continue
+
+        points.append({
+            "lat": lat,
+            "lon": lon,
+            "place": place,
+            "filename": fname,
+            "order": order_int,
+        })
+
+print(f"Loaded {len(points)} point(s) with coordinates.")
+
+if not points:
+    print("No valid coordinates in CSV. Stop.")
+else:
+    # center on mean of all points
+    mean_lat = sum(p["lat"] for p in points) / len(points)
+    mean_lon = sum(p["lon"] for p in points) / len(points)
+
+    m = folium.Map(location=[mean_lat, mean_lon], zoom_start=4)
+
+    # group points by filename
+    paths_by_file = {}
+    for p in points:
+        paths_by_file.setdefault(p["filename"], []).append(p)
+
+    # one FeatureGroup per text
+    for fname, plist in paths_by_file.items():
+        plist.sort(key=lambda x: x["order"])
+        fg = folium.FeatureGroup(name=fname)
+
+        # markers for this text
+        for p in plist:
+            popup_text = (
+                f"{p['place']}<br>"
+                f"file: {p['filename']}<br>"
+                f"order: {p['order']}"
+            )
+            folium.Marker(
+                location=[p["lat"], p["lon"]],
+                popup=popup_text,
+            ).add_to(fg)
+
+        # path line for this text
+        if len(plist) >= 2:
+            coords = [(p["lat"], p["lon"]) for p in plist]
+            folium.PolyLine(
+                locations=coords,
+                tooltip=fname,
+            ).add_to(fg)
+
+        fg.add_to(m)
+
+    # add layer control so you can switch routes on/off
+    folium.LayerControl().add_to(m)
+
+    m.save(map_path)
+    print("Saved map to:", map_path)
+
+    m  # show in notebook
+
+
+import os
+import rasterio
+from rasterio.plot import reshape_as_image
+from PIL import Image
+
+tif_path = "/content/workdir/input/CassiniWorldGlobe1790.tif"
+png_path = "/content/workdir/output/cassini_world.png"
+
+os.makedirs(os.path.dirname(png_path), exist_ok=True)
+
+with rasterio.open(tif_path) as src:
+    data = src.read()              # (bands, rows, cols)
+    img = reshape_as_image(data)   # (rows, cols, bands)
+    left, bottom, right, top = src.bounds
+
+Image.fromarray(img).save(png_path)
+
+# bounds for Leaflet / Folium
+cassini_bounds = [[bottom, left], [top, right]]
+cassini_center = [(bottom + top) / 2, (left + right) / 2]
+
+
+import rasterio
+from rasterio.plot import reshape_as_image
+from PIL import Image
+import os
+
+tif_path = "/content/workdir/input/CassiniWorldGlobe1790.tif"  # &lt;-- put your real path here
+png_path = "/content/workdir/output/cassini_world.png"
+
+os.makedirs(os.path.dirname(png_path), exist_ok=True)
+
+with rasterio.open(tif_path) as src:
+    data = src.read()              # (bands, rows, cols)
+    img = reshape_as_image(data)   # (rows, cols, bands)
+    left, bottom, right, top = src.bounds
+
+Image.fromarray(img).save(png_path)
+
+cassini_bounds = [[bottom, left], [top, right]]
+cassini_center = [(bottom + top) / 2, (left + right) / 2]
+
+print("PNG saved:", png_path)
+print("Bounds:", cassini_bounds)
+print("Center:", cassini_center)
+
+m = folium.Map(location=cassini_center, zoom_start=2, tiles=None)
+
+folium.raster_layers.ImageOverlay(
+    name="Cassini 1790",
+    image=png_path,
+    bounds=cassini_bounds,
+    opacity=1,
+    interactive=False,
+).add_to(m)
+
+
+# ============================================
+# 10. Make map with per-text layers + Cassini base
+# ============================================
+output_folder = "/content/workdir/output"
+csv_path = os.path.join(output_folder, "locations.csv")
+map_path = os.path.join(output_folder, "locations_map.html")
+
+points = []
+
+with open(csv_path, "r", encoding="utf-8") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        lat = row.get("latitude")
+        lon = row.get("longitude")
+        place = row.get("place_text", "")
+        fname = row.get("filename", "")
+        order = row.get("order_index", "")
+
+        if not lat or not lon or lat == "None" or lon == "None":
+            continue
+
+        try:
+            lat = float(lat)
+            lon = float(lon)
+            order_int = int(order)
+        except ValueError:
+            continue
+
+        points.append({
+            "lat": lat,
+            "lon": lon,
+            "place": place,
+            "filename": fname,
+            "order": order_int,
+        })
+
+print(f"Loaded {len(points)} point(s) with coordinates.")
+
+if not points:
+    print("No valid coordinates in CSV. Stop.")
+else:
+
+    # Use the center from the TIFF you loaded earlier
+    m = folium.Map(location=cassini_center, zoom_start=2, tiles=None)
+
+    # Cassini PNG layer
+    folium.raster_layers.ImageOverlay(
+        name="Cassini 1790",
+        image=png_path,
+        bounds=cassini_bounds,
+        opacity=1,
+        interactive=False,
+    ).add_to(m)
+
+    # optional modern layer
+    folium.TileLayer(
+        tiles="OpenStreetMap",
+        name="Modern",
+        overlay=True,
+        control=True,
+        show=False,
+    ).add_to(m)
+
+    paths_by_file = {}
+    for p in points:
+        paths_by_file.setdefault(p["filename"], []).append(p)
+
+    for fname, plist in paths_by_file.items():
+        plist.sort(key=lambda x: x["order"])
+        fg = folium.FeatureGroup(name=fname)
+
+        for p in plist:
+            popup_text = (
+                f"{p['place']}<br>"
+                f"file: {p['filename']}<br>"
+                f"order: {p['order']}"
+            )
+            folium.Marker(
+                location=[p["lat"], p["lon"]],
+                popup=popup_text,
+            ).add_to(fg)
+
+        if len(plist) >= 2:
+            coords = [(p["lat"], p["lon"]) for p in plist]
+            folium.PolyLine(
+                locations=coords,
+                tooltip=fname,
+            ).add_to(fg)
+
+        fg.add_to(m)
+
+    folium.LayerControl().add_to(m)
+    m.save(map_path)
+    print("Saved map to:", map_path)
+
+
+# ============================================
+# 10. Make map with per-text layers + Cassini base (distributions map)
+# ============================================
+output_folder = "/content/workdir/output"
+csv_path = os.path.join(output_folder, "locations.csv")
+map_path = os.path.join(output_folder, "distributions_map.html")
+
+points = []
+
+with open(csv_path, "r", encoding="utf-8") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        lat = row.get("latitude")
+        lon = row.get("longitude")
+        place = row.get("place_text", "")
+        fname = row.get("filename", "")
+        order = row.get("order_index", "")
+
+        if not lat or not lon or lat == "None" or lon == "None":
+            continue
+
+        try:
+            lat = float(lat)
+            lon = float(lon)
+            order_int = int(order)
+        except ValueError:
+            continue
+
+        points.append({
+            "lat": lat,
+            "lon": lon,
+            "place": place,
+            "filename": fname,
+            "order": order_int,
+        })
+
+print(f"Loaded {len(points)} point(s) with coordinates.")
+
+if not points:
+    print("No valid coordinates in CSV. Stop.")
+else:
+    # use Cassini globe center from the TIFF step
+    m = folium.Map(
+        location=cassini_center,
+        zoom_start=2,
+        tiles=None,
+        crs="EPSG4326",  # lat/lon grid, matches the globe
+    )
+
+    # Cassini PNG layer
+    folium.raster_layers.ImageOverlay(
+        name="Cassini 1790",
+        image=png_path,
+        bounds=cassini_bounds,
+        opacity=1,
+        interactive=False,
+    ).add_to(m)
+
+    # colour list for different texts
+    colour_list = [
+        "red", "blue", "green", "purple", "orange",
+        "darkred", "lightred", "beige", "darkblue", "darkgreen",
+        "cadetblue", "darkpurple", "white", "pink", "lightblue",
+        "lightgreen", "gray", "black", "lightgray",
+    ]
+    colour_by_file = {}
+    colour_index = 0
+
+    paths_by_file = {}
+    for p in points:
+        paths_by_file.setdefault(p["filename"], []).append(p)
+
+    for fname, plist in paths_by_file.items():
+        plist.sort(key=lambda x: x["order"])
+
+        # assign a stable colour for this text
+        if fname not in colour_by_file:
+            colour_by_file[fname] = colour_list[colour_index % len(colour_list)]
+            colour_index += 1
+        colour = colour_by_file[fname]
+
+        fg = folium.FeatureGroup(name=fname)
+
+        # only points, no lines
+        for p in plist:
+            popup_text = (
+                f"{p['place']}<br>"
+                f"file: {p['filename']}<br>"
+                f"order: {p['order']}"
+            )
+            folium.CircleMarker(
+                location=[p["lat"], p["lon"]],
+                radius=4,
+                popup=popup_text,
+                color=colour,
+                fill=True,
+                fill_color=colour,
+                fill_opacity=0.9,
+            ).add_to(fg)
+
+        fg.add_to(m)
+
+    folium.LayerControl().add_to(m)
+    m.save(map_path)
+    print("Saved map to:", map_path)
+
+    </code>
+  </div>
+</section>
+
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© 2025 Mapping Robinson Crusoe</span>
+        <span>Created as a digital exhibit project</span>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const header = document.querySelector(".site-header");
+        const navToggle = document.querySelector(".nav-toggle");
+        if (navToggle) {
+          navToggle.addEventListener("click", () => {
+            header.classList.toggle("is-open");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
 
