@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>The Man in the Moone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../main.css" />
+  </head>
 
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="../index.html" class="brand">
+          <div class="brand-mark">RC</div>
+          <div class="brand-text">
+            <span class="brand-title">Mapping Robinson Crusoe</span>
+            <span class="brand-subtitle">Digital Exhibit</span>
+          </div>
+        </a>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span class="nav-toggle-box">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+          </span>
+        </button>
+
+        <nav class="site-nav">
+          <a href="../index.html">Home</a>
+          <a href="../comparative.html">Comparative Map</a>
+          <a href="../ivcollections.html" class="is-active">Collections</a>
+          <a href="../mapping.html">Mapping</a>
+          <a href="../about.html">About the project</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <section class="page-intro">
+          <p class="eyebrow">Collection</p>
+          <h1>The Man in the Moone (1638)</h1>
+        </section>
+
+        <!-- Main image / book card -->
+        <section class="page-section">
+          <div class="welcome">
+            <div class="welcome-image">
+              <img
+                src="../img/francisg.jpg"
+                alt="The Man in the Moone (1638)."
+              />
+            </div>
+            <article class="welcome-text">
+              <h2>About this Text</h2>
+              <p>
+                The Man in the Moone (1638) by Francis Godwin. Although it is best known for the non-travelling portion of the novel, there is a fair bit
+                of movement in the first part of the book. Crusoe moves between various English cities and port
+                towns before making his way down to the west coast of Africa. He travels to Brazil and in the
+                Caribbean area, all before being shipwrecked for the remainder of the book. When he gets off his
+                island he returns to England and then also takes a quick trip to Portugal and Spain.
+              </p>
+              <p>
+                The plot of Robinson Crusoe follows the young man from York as he longs for adventure. He leaves 
+                his home against his family's wishes and starts his adventure. After a fair bit of movement in Africa
+                and South America, he is stranded on a deserted island where he spends the next 28 years of his life.
+                He survives with tools and animals around him, and also comes into possession of an Indigenous man who
+                he names Friday.
+              </p>
+              <p>
+               The edition that was used in the mapping process of this project was from Project Gutenberg. Although this
+                is by no means the authoritative edition of the novel, we needed a clean txt file in order to perform the
+                computations. Other digital versions exist, but some are pdfs and the data cleaner would have to remove all
+                the footnotes. Additionally, many pdfs of books from this period do not have OCR (optimal character recognition)
+                and this would require running an OCR program which takes many hours and sometimes does not work.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Large rounded map image -->
+        <section class="page-section">
+          <h2>Map for this collection</h2>
+          <figure class="map-figure">
+            <img
+              src="../img/mapmoone.png"
+              alt="Map showing the locations in The Man in the Moone."
+            />
+            <figcaption class="map-figure-caption">
+              Here is the map for The Man in the Moone. One who is familiar with the text might notice that some of the 
+              movements seem inaccurate. They would be correct. The code retreived 286 locations from the text. This
+              Is simply not factual. Please read about the trials and tribulations in the <a href="../mapping.html">Mapping section</a>.
+          </figure>
+        </section>
+
+            <article class="welcome-text">
+              <h2>Download the text</h2>
+              <p>
+                Click the button below to download the .txt file of
+                <em>The Man in the Moone</em>.
+              </p>
+
+              <!-- Download button – adjust path/filename as needed -->
+              <p>
+                <a
+                  class="btn-primary"
+                  href="../texts/moone.txt"
+                  download
+                >
+                  Download The Man in the Moone (.txt)
+                </a>
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="page-section">
+          <p>
+            <a href="../collections.html" class="highlight-link">
+              ← Back to all collections
+            </a>
+          </p>
+        </section>
+      </div>
+    </main>
+
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© 2025 Mapping Robinson Crusoe</span>
+        <span>Created for English 4400: Violent Voyages</span>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const header = document.querySelector(".site-header");
+        const navToggle = document.querySelector(".nav-toggle");
+        if (navToggle) {
+          navToggle.addEventListener("click", () => {
+            header.classList.toggle("is-open");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
