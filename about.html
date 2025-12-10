@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>About the Project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Make sure this matches the stylesheet name used on your other pages -->
     <link rel="stylesheet" href="main.css" />
   </head>
 
@@ -36,112 +37,109 @@
       </div>
     </header>
 
-<main class="main">
-  <div class="container">
-    <!-- 1. Hero / Crusoe images slider -->
-    <section class="hero" aria-labelledby="hero-title">
-      <!-- TEXT COLUMN -->
-      <div class="hero-text">
-        <h1 id="hero-title">The Origin</h1>
-        <p>
-          The Mapping Robinson Crusoe Project was created for the final project of the
-          English 4400: Violent Voyages course at the University of Lethbridge (Fall 2025).
-          The creator, Jocelyn McKnight, came to the idea when thinking about movement in
-          <em>Robinson Crusoe</em> and other GIS/digital mapping projects. In particular,
-          the Diogenet project, which mapped the movements of Greek philosophers, was a major inspiration.
-        </p>
-        <p>
-          Unfortunately, the Diogenet project is no longer active, but it used to be available at
-          <a href="https://diogenet.ucsd.edu/map/" target="_blank" rel="noopener">
-            https://diogenet.ucsd.edu/map/
-          </a>.
-          Originally, the idea behind this Crusoe project was to replicate Diogenet, but here the focus
-          is on the relationship between fictional and factual texts. As the project evolved, it turned
-          toward an existing debate in Crusoe studies about the texts that may have inspired
-          <em>Robinson Crusoe</em>. Mapping became a way to enter that debate and use computational tools
-          to provide additional evidence.
-        </p>
-      </div>
-
-      <!-- IMAGE SLIDER COLUMN -->
-      <div
-        class="hero-slider"
-        aria-label="Iconic images of Robinson Crusoe"
-      >
-        <div class="hero-slide is-active">
-          <div class="hero-slide-image">
-            <img
-              src="img/crusoe1.jpg"
-              alt="Crusoe on a beach."
-            />
+    <main class="main">
+      <div class="container">
+        <!-- Hero: text + Crusoe images slider -->
+        <section class="hero" aria-labelledby="hero-title">
+          <!-- TEXT COLUMN -->
+          <div class="hero-text">
+            <h1 id="hero-title">The Origin</h1>
+            <p>
+              The Mapping Robinson Crusoe Project was created for the final project of the
+              English 4400: Violent Voyages course at the University of Lethbridge (Fall 2025).
+              The creator, Jocelyn McKnight, came to the idea when thinking about movement in
+              <em>Robinson Crusoe</em> and other GIS/digital mapping projects. In particular,
+              the Diogenet project, which mapped the movements of Greek philosophers, was a major inspiration.
+            </p>
+            <p>
+              Unfortunately, the Diogenet project is no longer active, but it used to be available at
+              <a href="https://diogenet.ucsd.edu/map/" target="_blank" rel="noopener">
+                https://diogenet.ucsd.edu/map/
+              </a>.
+              Originally, the idea behind this Crusoe project was to replicate Diogenet, but here the focus
+              is on the relationship between fictional and factual texts. As the project evolved, it turned
+              toward an existing debate in Crusoe studies about the texts that may have inspired
+              <em>Robinson Crusoe</em>. Mapping became a way to enter that debate and use computational tools
+              to provide additional evidence.
+            </p>
           </div>
-          <div class="hero-slide-caption">
-            <p class="eyebrow">Robinson Crusoe</p>
-            <h2>Crusoe</h2>
-            <p>Crusoe on a beach.</p>
+
+          <!-- IMAGE SLIDER COLUMN -->
+          <div
+            class="hero-slider"
+            aria-label="Iconic images of Robinson Crusoe"
+          >
+            <div class="hero-slide is-active">
+              <div class="hero-slide-image">
+                <img
+                  src="img/crusoe1.jpg"
+                  alt="Crusoe on a beach."
+                />
+              </div>
+              <div class="hero-slide-caption">
+                <p class="eyebrow">Robinson Crusoe</p>
+                <h2>Crusoe</h2>
+                <p>Crusoe on a beach.</p>
+              </div>
+            </div>
+
+            <div class="hero-slide">
+              <div class="hero-slide-image">
+                <img
+                  src="img/crusoe2.jpg"
+                  alt="Crusoe sitting on a rock."
+                />
+              </div>
+              <div class="hero-slide-caption">
+                <p class="eyebrow">Robinson Crusoe</p>
+                <h2>Crusoe</h2>
+                <p>Crusoe sitting on a rock.</p>
+              </div>
+            </div>
+
+            <div class="hero-slide">
+              <div class="hero-slide-image">
+                <img
+                  src="img/crusoe3.jpg"
+                  alt="Crusoe talking to a parrot."
+                />
+              </div>
+              <div class="hero-slide-caption">
+                <p class="eyebrow">Robinson Crusoe</p>
+                <h2>Crusoe</h2>
+                <p>Crusoe talking to a parrot.</p>
+              </div>
+            </div>
+
+            <!-- Slider controls -->
+            <div class="hero-dots" aria-hidden="true">
+              <button data-slide="0" class="is-active"></button>
+              <button data-slide="1"></button>
+              <button data-slide="2"></button>
+            </div>
+
+            <button
+              class="hero-slide-control prev"
+              type="button"
+              aria-label="Previous Crusoe image"
+              data-slider="prev"
+            >
+              ‹
+            </button>
+            <button
+              class="hero-slide-control next"
+              type="button"
+              aria-label="Next Crusoe image"
+              data-slider="next"
+            >
+              ›
+            </button>
           </div>
-        </div>
+        </section>
 
-        <div class="hero-slide">
-          <div class="hero-slide-image">
-            <img
-              src="img/crusoe2.jpg"
-              alt="Crusoe sitting on a rock."
-            />
-          </div>
-          <div class="hero-slide-caption">
-            <p class="eyebrow">Robinson Crusoe</p>
-            <h2>Crusoe</h2>
-            <p>Crusoe sitting on a rock.</p>
-          </div>
-        </div>
-
-        <div class="hero-slide">
-          <div class="hero-slide-image">
-            <img
-              src="img/crusoe3.jpg"
-              alt="Crusoe talking to a parrot."
-            />
-          </div>
-          <div class="hero-slide-caption">
-            <p class="eyebrow">Robinson Crusoe</p>
-            <h2>Crusoe</h2>
-            <p>Crusoe talking to a parrot.</p>
-          </div>
-        </div>
-
-        <!-- Slider controls -->
-        <div class="hero-dots" aria-hidden="true">
-          <button data-slide="0" class="is-active"></button>
-          <button data-slide="1"></button>
-          <button data-slide="2"></button>
-        </div>
-
-        <button
-          class="hero-slide-control prev"
-          type="button"
-          aria-label="Previous Crusoe image"
-          data-slider="prev"
-        >
-          ‹
-        </button>
-        <button
-          class="hero-slide-control next"
-          type="button"
-          aria-label="Next Crusoe image"
-          data-slider="next"
-        >
-          ›
-        </button>
-      </div>
-    </section>
-      </div>
-</main>
-
-
-        <!-- About the project -->
+        <!-- About the project creator -->
         <section class="page-section">
-          <h2>About the project Creator</h2>
+          <h2>About the project creator</h2>
           <p>
             It's me! Hi Dana!
           </p>
@@ -151,118 +149,101 @@
         <section class="page-section">
           <h2>Acknowledgements</h2>
           <p>
-            While this was my project and I did all the stuff, acknowedgements are necessary.
+            While this was my project and I did all the stuff, acknowledgements are necessary.
           </p>
           <p>
-            PhD student and GIS expert, Davide Pafumi provided invaulable guidence on how to set up 
-            the mapping codes. He explained what data I needed and which libraries should be used in a 
+            PhD student and GIS expert, Davide Pafumi, provided invaluable guidance on how to set up
+            the mapping code. He explained what data I needed and which libraries should be used in a
             project like this. Luckily for me, he already had part of the code done from a different project
             and I just had to adapt it.
           </p>
           <p>
-            Prof. Dana Lew provided the intial list of Crusoe sources. Those were invaluable. I am so sorry
+            Prof. Dana Lew provided the initial list of Crusoe sources. Those were invaluable. I am so sorry
             you had to see your books defiled on the map.
           </p>
           <p>
-            The design of the website is heavily inspired by the Franz Hals Museum in Haarlem (Netherlands). I truely
+            The design of the website is heavily inspired by the Frans Hals Museum in Haarlem (Netherlands). I truly
             believe they have one of the best websites ever, especially for digital exhibitions. Check it out if you get
-            the chance https://franshalsmuseum.nl/en/about-us! ChatGPT 5.1 provided valuable HTML support and help clean
-            up my style sheet and integrate some features that I was really set on having, such as the rounded corners on 
-            the images and the navigation bar (which is my weakest coding skills btw). ALso thank you to everyone on reddit
-            who has ever posted about css for html.
+            the chance: <a href="https://franshalsmuseum.nl/en/about-us" target="_blank" rel="noopener">Frans Hals Museum</a>.
+            ChatGPT 5.1 provided valuable HTML support and helped clean up my stylesheet and integrate features I really wanted,
+            such as rounded corners on the images and the navigation bar (which is my weakest coding skill, by the way).
+            Also thank you to everyone on Reddit who has ever posted about CSS for HTML.
           </p>
         </section>
 
+        <!-- Works cited -->
         <section class="page-section">
           <h2>Works Cited</h2>
-          <p>
-<ul>
-  <li>
-    Blaim, A. (1996). [Review of the book <em>The strange surprizing sources of Robinson Crusoe</em>, by D. Fausett]. 
-    <em>Utopian Studies, 7</em>(2), 254–257. https://www.jstor.org/stable/20719540
-  </li>
-
-  <li>
-    Cooper, D., Donaldson, C., &amp; Murrieta-Flores, P. (Eds.). (2016). 
-    <em>Literary mapping in the digital age</em>. Routledge. https://doi.org/10.4324/9781315592596
-  </li>
-
-  <li>
-    Cooper, D., &amp; Priestnall, G. (2011). The processual intertextuality of literary cartographies: Critical and digital practices. 
-    <em>The Cartographic Journal, 48</em>(4), 250–262. https://doi.org/10.1179/1743277411Y.0000000025
-  </li>
-
-  <li>
-    Dampier, W. (2005). <em>A new voyage round the world</em> [E-book]. Project Gutenberg Australia. 
-    (Original work published 1697) https://gutenberg.net.au/ebooks05/0500461h.html
-  </li>
-
-  <li>
-    Defoe, D. (1996). <em>The life and adventures of Robinson Crusoe</em> [E-book]. Project Gutenberg. 
-    (Original work published 1719) https://www.gutenberg.org/ebooks/521
-  </li>
-
-  <li>
-    Fausett, D. (1994). <em>The strange surprizing sources of Robinson Crusoe</em>. Rodopi.
-  </li>
-
-  <li>
-    Francis, M. (2021). Towards goosepunk: A contemporary poetic treatment of Francis Godwin's 
-    <em>The Man in the Moone</em>. <em>Interfaces: A Journal of Medieval European Literatures, 8</em>, 98–112. 
-    https://doi.org/10.54103/interfaces-08-06
-  </li>
-
-  <li>
-    Gabay, S., &amp; Vitali, G. P. (2019). A theatre of places: Mapping 17th c. French theatre. 
-    In <em>Proceedings of the 13th Workshop on Geographic Information Retrieval (GIR ’19)</em>. 
-    Association for Computing Machinery. https://doi.org/10.1145/3371140.3371146
-  </li>
-
-  <li>
-    Godwin, F. (2014). <em>The strange voyage and adventures of Domingo Gonsales, to the world in the moon</em> [E-book]. 
-    Project Gutenberg. (Original work published 1638) https://www.gutenberg.org/ebooks/46591
-  </li>
-
-  <li>
-    Jack, J. H. (1961). “A New Voyage Round the World”: Defoe’s <em>roman à thèse</em>. 
-    <em>The Huntington Library Quarterly, 24</em>(4), 323–336.
-  </li>
-
-  <li>
-    Knox, R. (2004). <em>An historical relation of the island Ceylon in the East Indies: Together with an account of the
-    detaining in captivity the author and divers other Englishmen now living there, and of the author’s miraculous escape</em> 
-    [E-book]. Project Gutenberg. (Original work published 1681) https://www.gutenberg.org/ebooks/14346
-  </li>
-
-  <li>
-    Pauley, B. F. (2023). Attribution and the Defoe canon. In N. Seager &amp; J. A. Downie (Eds.), 
-    <em>The Oxford handbook of Daniel Defoe</em> (pp. 629–644). Oxford University Press. 
-    https://doi.org/10.1093/oxfordhb/9780198827177.001.0001
-  </li>
-
-  <li>
-    Piatti, B. (2017). Literary cartography: Mapping as method. In A. Engberg-Pedersen (Ed.), 
-    <em>Literature and cartography: Theories, histories, genres</em> (pp. 45–72). MIT Press. 
-    https://doi.org/10.7551/mitpress/11177.003.0006
-  </li>
-
-  <li>
-    Poole, W. (2005). The origins of Francis Godwin’s <em>The Man in the Moone</em> (1638). 
-    <em>Philological Quarterly, 84</em>(2), 189–210.
-  </li>
-
-  <li>
-    Poole, W. (2016). Kepler’s <em>Somnium</em> and Francis Godwin’s <em>The Man in the Moone</em>: Births of science-fiction 1593–1638. 
-    In C. Houston (Ed.), <em>New worlds reflected: Travel and utopia in the early modern period</em> (pp. 57–69). Routledge.
-  </li>
-
-  <li>
-    Thell, A. M. (2013). William Dampier’s “Mixt Relation”: Narrative vs. Natural History in A New Voyage Round the World (1697). 
-    Eighteenth-Century Life, 37(3), 29-54.
-  </li>
-</ul>
-
-          </p>
+          <ul>
+            <li>
+              Blaim, A. (1996). [Review of the book <em>The strange surprizing sources of Robinson Crusoe</em>, by D. Fausett]. 
+              <em>Utopian Studies, 7</em>(2), 254–257. https://www.jstor.org/stable/20719540
+            </li>
+            <li>
+              Cooper, D., Donaldson, C., &amp; Murrieta-Flores, P. (Eds.). (2016). 
+              <em>Literary mapping in the digital age</em>. Routledge. https://doi.org/10.4324/9781315592596
+            </li>
+            <li>
+              Cooper, D., &amp; Priestnall, G. (2011). The processual intertextuality of literary cartographies: Critical and digital practices. 
+              <em>The Cartographic Journal, 48</em>(4), 250–262. https://doi.org/10.1179/1743277411Y.0000000025
+            </li>
+            <li>
+              Dampier, W. (2005). <em>A new voyage round the world</em> [E-book]. Project Gutenberg Australia. 
+              (Original work published 1697) https://gutenberg.net.au/ebooks05/0500461h.html
+            </li>
+            <li>
+              Defoe, D. (1996). <em>The life and adventures of Robinson Crusoe</em> [E-book]. Project Gutenberg. 
+              (Original work published 1719) https://www.gutenberg.org/ebooks/521
+            </li>
+            <li>
+              Fausett, D. (1994). <em>The strange surprizing sources of Robinson Crusoe</em>. Rodopi.
+            </li>
+            <li>
+              Francis, M. (2021). Towards goosepunk: A contemporary poetic treatment of Francis Godwin's 
+              <em>The Man in the Moone</em>. <em>Interfaces: A Journal of Medieval European Literatures, 8</em>, 98–112. 
+              https://doi.org/10.54103/interfaces-08-06
+            </li>
+            <li>
+              Gabay, S., &amp; Vitali, G. P. (2019). A theatre of places: Mapping 17th c. French theatre. 
+              In <em>Proceedings of the 13th Workshop on Geographic Information Retrieval (GIR ’19)</em>. 
+              Association for Computing Machinery. https://doi.org/10.1145/3371140.3371146
+            </li>
+            <li>
+              Godwin, F. (2014). <em>The strange voyage and adventures of Domingo Gonsales, to the world in the moon</em> [E-book]. 
+              Project Gutenberg. (Original work published 1638) https://www.gutenberg.org/ebooks/46591
+            </li>
+            <li>
+              Jack, J. H. (1961). “A New Voyage Round the World”: Defoe’s <em>roman à thèse</em>. 
+              <em>The Huntington Library Quarterly, 24</em>(4), 323–336.
+            </li>
+            <li>
+              Knox, R. (2004). <em>An historical relation of the island Ceylon in the East Indies: Together with an account of the
+              detaining in captivity the author and divers other Englishmen now living there, and of the author’s miraculous escape</em> 
+              [E-book]. Project Gutenberg. (Original work published 1681) https://www.gutenberg.org/ebooks/14346
+            </li>
+            <li>
+              Pauley, B. F. (2023). Attribution and the Defoe canon. In N. Seager &amp; J. A. Downie (Eds.), 
+              <em>The Oxford handbook of Daniel Defoe</em> (pp. 629–644). Oxford University Press. 
+              https://doi.org/10.1093/oxfordhb/9780198827177.001.0001
+            </li>
+            <li>
+              Piatti, B. (2017). Literary cartography: Mapping as method. In A. Engberg-Pedersen (Ed.), 
+              <em>Literature and cartography: Theories, histories, genres</em> (pp. 45–72). MIT Press. 
+              https://doi.org/10.7551/mitpress/11177.003.0006
+            </li>
+            <li>
+              Poole, W. (2005). The origins of Francis Godwin’s <em>The Man in the Moone</em> (1638). 
+              <em>Philological Quarterly, 84</em>(2), 189–210.
+            </li>
+            <li>
+              Poole, W. (2016). Kepler’s <em>Somnium</em> and Francis Godwin’s <em>The Man in the Moone</em>: Births of science-fiction 1593–1638. 
+              In C. Houston (Ed.), <em>New worlds reflected: Travel and utopia in the early modern period</em> (pp. 57–69). Routledge.
+            </li>
+            <li>
+              Thell, A. M. (2013). William Dampier’s “Mixt Relation”: Narrative vs. Natural History in <em>A New Voyage Round the World</em> (1697). 
+              <em>Eighteenth-Century Life, 37</em>(3), 29–54.
+            </li>
+          </ul>
         </section>
       </div>
     </main>
@@ -287,4 +268,3 @@
     </script>
   </body>
 </html>
-
