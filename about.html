@@ -1,1 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>About the Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand">
+          <div class="brand-mark">RC</div>
+          <div class="brand-text">
+            <span class="brand-title">Mapping Robinson Crusoe</span>
+            <span class="brand-subtitle">Digital Exhibit</span>
+          </div>
+        </a>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span class="nav-toggle-box">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+          </span>
+        </button>
+
+        <nav class="site-nav">
+          <a href="index.html">Home</a>
+          <a href="comparative.html">Comparative Map</a>
+          <a href="collections.html">Collections</a>
+          <a href="mapping.html">Mapping</a>
+          <a href="about.html" class="is-active">About the project</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <!-- Intro -->
+        <section class="page-intro">
+          <p class="eyebrow">About</p>
+          <h1>The Origins</h1>
+          <p>
+            The Mapping Robinson Crusoe Project was created for the final project of the 
+            English 4400: Violent Voyages course at the University of Lethbridge Fall 2025.
+            The Creator, Jocelyn McKnight, Came to the idea when thinking about movement in 
+            <em>Robinson Crusoe</em> and other GIS/Digital Mapping projects. Particularly, the Diogenet 
+            project, which mapped out the movements of Greek philosophers, played a big inspiration.
+            Unfortunately, this project is no longer active but it used to be found at https://diogenet.ucsd.edu/map/.
+            Originally, the idea behind the Crusoe project was to replicate the the Diogenet Project 
+            but here we were looking for the relationship between fictional and factual text. The project evolved
+            from the original idea, as fortunately, there is a debate in Crusoe studies on the texts that could have
+            inspired Robinson Crusoe. The mapping project was the perfect way to get involved in the
+            debate and use computational tools to provide more evidence.
+          </p>
+        </section>
+
+        <!-- About the project -->
+        <section class="page-section">
+          <h2>About the project Creator</h2>
+          <p>
+            It's me! Hi Dana!
+          </p>
+        </section>
+
+        <!-- Acknowledgements -->
+        <section class="page-section">
+          <h2>Acknowledgements</h2>
+          <p>
+            While this was my project and I did all the stuff, acknowedgements are necessary.
+          </p>
+          <p>
+            PhD student and GIS expert, Davide Pafumi provided invaulable guidence on how to set up 
+            the mapping codes. He explained what data I needed and which libraries should be used in a 
+            project like this. Luckily for me, he already had part of the code done from a different project
+            and I just had to adapt it.
+          </p>
+          <p>
+            Prof. Dana Lew provided the intial list of Crusoe sources. Those were invaluable. I am so sorry
+            you had to see your books defiled on the map.
+          </p>
+          <p>
+            The design of the website is heavily inspired by the Franz Hals Museum in Haarlem (Netherlands). I truely
+            believe they have one of the best websites ever, especially for digital exhibitions. Check it out if you get
+            the chance https://franshalsmuseum.nl/en/about-us! ChatGPT 5.1 provided valuable HTML support and help clean
+            up my style sheet and integrate some features that I was really set on having, such as the rounded corners on 
+            the images and the navigation bar (which is my weakest coding skills btw).
+          </p>
+        </section>
+
+        <section class="page-section">
+          <h2>Works Cited</h2>
+          <p>
+<ul>
+  <li>
+    Defoe, Daniel. <em>The Life and Adventures of Robinson Crusoe</em>. Project Gutenberg, 1996,
+    <a href="https://www.gutenberg.org/ebooks/521">www.gutenberg.org/ebooks/521</a>.
+    Accessed 9 Dec. 2025.
+  </li>
+
+  <li>
+    Knox, Robert. <em>An Historical Relation of the Island Ceylon in the East Indies: Together with an Account of the Detaining in Captivity the Author and Divers Other Englishmen Now Living There, and of the Author’s Miraculous Escape</em>. Project Gutenberg, 2004,
+    <a href="https://www.gutenberg.org/ebooks/14346">www.gutenberg.org/ebooks/14346</a>.
+    Accessed 9 Dec. 2025.
+  </li>
+
+  <li>
+    Neville, Henry. <em>The Isle of Pines (1668) and an Essay in Bibliography</em>. Project Gutenberg, 2007,
+    <a href="https://www.gutenberg.org/ebooks/21410">www.gutenberg.org/ebooks/21410</a>.
+    Accessed 9 Dec. 2025.
+  </li>
+
+  <li>
+    Wafer, Lionel. <em>A New Voyage and Description of the Isthmus of America</em>. Edited by George Parker Winship,
+    Burrows Brothers, 1903. <em>HathiTrust Digital Library</em>,
+    <a href="https://catalog.hathitrust.org/Record/000157871">catalog.hathitrust.org/Record/000157871</a>.
+    Accessed 9 Dec. 2025.
+  </li>
+</ul>
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© 2025 Mapping Robinson Crusoe</span>
+        <span>Created as a digital exhibit project</span>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const header = document.querySelector(".site-header");
+        const navToggle = document.querySelector(".nav-toggle");
+        if (navToggle) {
+          navToggle.addEventListener("click", () => {
+            header.classList.toggle("is-open");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
 
