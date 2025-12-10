@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Isle of Pines</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../main.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="../index.html" class="brand">
+          <div class="brand-mark">RC</div>
+          <div class="brand-text">
+            <span class="brand-title">Mapping Robinson Crusoe</span>
+            <span class="brand-subtitle">Digital Exhibit</span>
+          </div>
+        </a>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span class="nav-toggle-box">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+          </span>
+        </button>
+
+        <nav class="site-nav">
+          <a href="../index.html">Home</a>
+          <a href="../comparative.html">Comparative Map</a>
+          <a href="../collections.html" class="is-active">Collections</a>
+          <a href="../mapping.html">Mapping</a>
+          <a href="../about.html">About the project</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <section class="page-intro">
+          <p class="eyebrow">Collection</p>
+          <h1>Isle of Pines (1668)</h1>
+        </section>
+
+        <!-- Main image / book card -->
+        <section class="page-section">
+          <div class="welcome">
+            <div class="welcome-image">
+              <img
+                src="../img/henryn.jpg"
+                alt="Isle of Pines."
+              />
+            </div>
+            <article class="welcome-text">
+              <h2>About this Text</h2>
+              <p>
+                The movements in this text are mostly focused on that of the Dutch sailer arriving at the fictional island
+                somewhere in the Atlantic Ocean. It is there he finds a colonie of people, all descended from one man who was
+                shipwrecked many years ago with four women. The island is populated with the offspring of George Pine. Before
+                Pine was shipwrecked, he travelled with his master's household to various places across the Esst Indies. They 
+                travelled to places such as St. Hellen's Island, Cape of Good hope, and St. Laurence Island.
+              </p>
+              <p>
+                Isle of Pines is a satirical text and often groupped in with the Robinsonade, even though it predates it by half a
+                a century. Most of the plot takes place on the Island between the factions of Pines children and grand children by
+                the various women he had been left with.
+              </p>
+              <p>
+               This would have been an ideal book to map against Robinson Crusoe, however it could not be accomplished at this moment.
+                This is because we could not find a good text that was processed. There exists many scans of the novel but none with OCR.
+                There also exists some files of essays about Isle of Pines but not the primary text itself. This would be a good addition
+                the mega map.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="page-section">
+          <p>
+            <a href="../collections.html" class="highlight-link">
+              ← Back to all collections
+            </a>
+          </p>
+        </section>
+      </div>
+    </main>
+
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© 2025 Mapping Robinson Crusoe</span>
+        <span>Created as a digital exhibit project</span>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const header = document.querySelector(".site-header");
+        const navToggle = document.querySelector(".nav-toggle");
+        if (navToggle) {
+          navToggle.addEventListener("click", () => {
+            header.classList.toggle("is-open");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
