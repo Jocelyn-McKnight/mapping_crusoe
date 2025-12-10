@@ -1,157 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Collections – Mapping Robinson Crusoe</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="main.css" />
-</head>
-<body class="collections-page">
-  <div class="page-wrapper">
-    <!-- Header -->
-    <header>
-      <div class="top-bar">
-        <div class="logo">Mapping Robinson Crusoe</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mapping Robinson Crusoe – Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="index.html">About</a>
-          <a href="collections.html" aria-current="page">Collections</a>
-          <a href="sources.html">Sources</a>
-          <a href="teaching.html">Teaching</a>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand">
+          <div class="brand-mark">RC</div>
+          <div class="brand-text">
+            <span class="brand-title">Mapping Robinson Crusoe</span>
+            <span class="brand-subtitle">Digital Exhibit</span>
+          </div>
+        </a>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span class="nav-toggle-box">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+          </span>
+        </button>
+
+        <nav class="site-nav">
+          <a href="index.html">Home</a>
+          <a href="robinson-crusoe.html">Robinson Crusoe</a>
+          <a href="collections.html" class="is-active">Collections</a>
+          <a href="mapping.html">Mapping</a>
+          <a href="about.html">About the project</a>
         </nav>
-
-        <a href="collections.html" class="primary-btn">View maps</a>
       </div>
     </header>
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-image hero-image-crusoe"></div>
-      <div class="hero-inner">
-        <div class="hero-content">
-          <div class="breadcrumb">
-            <a href="index.html">Home</a> / <span>Collections</span>
-          </div>
-          <h1 class="hero-title">Collections</h1>
-          <p class="hero-subtitle">
-            Explore the maps and texts that Robinson Crusoe is read against in this project.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Main content -->
-    <main>
-      <div class="content-wrapper">
-        <!-- Intro text -->
-        <section class="collection-header">
-          <p class="article-header-kicker">Comparative cartographies</p>
-          <h2 class="collection-title">Books, voyages, and maps</h2>
-          <p class="collection-intro-text">
-            Each item in the collection pairs a text with a map: a specific edition, travel narrative,
-            or voyage account that <em>Robinson Crusoe</em> can be compared to. Select a book to open
-            its individual page with the map and bibliographic details.
+    <main class="main">
+      <div class="container">
+        <section class="page-intro">
+          <p class="eyebrow">Collections</p>
+          <h1>Texts around Robinson Crusoe</h1>
+          <p>
+            Each of these books forms one “collection” in the exhibit. Select a
+            card to see more detail about the work, its publication context, and
+            how it relates to <em>Robinson Crusoe</em>.
           </p>
         </section>
 
-        <!-- Filter + sort bar -->
-        <section class="collection-controls" aria-label="Filters and sorting">
-          <div class="collection-filters">
-            <button class="filter-pill filter-pill-active" type="button">All works</button>
-            <button class="filter-pill" type="button">Travel narratives</button>
-            <button class="filter-pill" type="button">Atlases &amp; charts</button>
-            <button class="filter-pill" type="button">Editions of Crusoe</button>
+        <!-- Collections grid – 9 cards, like the Frans Hals collection page -->
+        <section class="highlights" aria-labelledby="collections-title">
+          <header class="section-heading">
+            <h2 id="collections-title">All collections</h2>
+            <p>
+              Browse the works we examined in class. Each collection page
+              includes images, notes, and links to the mapping interface where
+              relevant.
+            </p>
+          </header>
+
+          <div class="highlight-grid">
+            <!-- 1. Robinson Crusoe -->
+            <a href="collections/robinson-crusoe.html" class="highlight-card">
+              <img
+                src="img/danield.jpg"
+                alt="Title page of Robinson Crusoe."
+              />
+              <div class="highlight-body">
+                <h3>Robinson Crusoe</h3>
+                <p>
+                  The 1719 novel that anchors this exhibit: Crusoe’s 28 years on
+                  a remote island.
+                </p>
+                <span class="highlight-link">View collection →</span>
+              </div>
+            </a>
+
+            <!-- 2. Isle of Pines -->
+            <a href="collections/isle-of-pines.html" class="highlight-card">
+              <img
+                src="img/henryn.jpg"
+                alt="Title page or illustration from The Isle of Pines."
+              />
+              <div class="highlight-body">
+                <h3>Isle of Pines</h3>
+                <p>
+                  A Dutch sailor’s account of George Pine’s shipwreck and the
+                  settlement of a North Atlantic island.
+                </p>
+                <span class="highlight-link">View collection →</span>
+              </div>
+            </a>
+
+            <!-- 3. Lionel Wafer -->
+            <a
+              href="collections/new-voyage-isthmus.html"
+              class="highlight-card"
+            >
+              <img
+                src="img/lionelw.jpg"
+                alt="A New Voyage and Description of the Isthmus of America."
+              />
+              <div class="highlight-body">
+                <h3>
+                  A New Voyage and Description of the Isthmus of America
+                </h3>
+                <p>
+                  Lionel Wafer’s account of Panama and his time among the Cuna
+                  people.
+                </p>
+                <span class="highlight-link">View collection →</span>
+              </div>
+            </a>
+
+            <!-- 4. Book 4 – placeholder, rename as needed -->
+            <a href="collections/book4.html" class="highlight-card">
+              <img
+                src="img/book4.jpg"
+                alt="Cover or title page of another Crusoe-related source text."
+              />
+              <div class="highlight-body">
+                <h3>Book Four Title</h3>
+                <p>
+                  Short descriptive sentence explaining how this text connects
+                  to Crusoe.
+                </p>
+                <span class="highlight-link">View collection →</span>
+              </div>
+            </a>
+
+            <!-- 5. Book 5 -->
+            <a href="collections/book5.html" class="highlight-card">
+              <img
+                src="img/book5.jpg"
+                alt="Cover or title page of a travel narrative or voyage account."
+              />
+              <div class="highlight-body">
+                <h3>Book Five Title</h3>
+                <p>
+                  Another key work in Crusoe’s intertextual network—replace this
+                  with your own description.
+                </p>
+                <span class="highlight-link">View collection →</span>
+              </div>
+            </a>
+
+            <!-- 6. Book 6 -->
+            <a href="collections/book6.html" class="highlight-card">
+              <img
+                src="img/book6.jpg"
+                alt="Source book related to shipwreck, navigation, or the Atlantic world."
+              />
+              <div class="highlight-body">
+                <h3>Book Six Title</h3>
+                <p>
+                  Use this card for another source: devotional text, voyage, or
+                  conduct book.
+                </p>
+                <span class="highlight-link">View collection →</span>
+              </div>
+            </a>
+
+            <!-- 7. Book 7 -->
+            <a href="collections/book7.html" class="highlight-card">
+              <img
+                src="img/book7.jpg"
+                alt="Source text with castaway or survival motifs."
+              />
+              <div class="highlight-body">
+                <h3>Book Seven Title</h3>
+                <p>
+                  Replace this with the title and one–two line summary of the
+                  book’s relevance.
+                </p>
+                <span class="highlight-link">View collection →</span>
+              </div>
+            </a>
+
+            <!-- 8. Book 8 -->
+            <a href="collections/book8.html" class="highlight-card">
+              <img
+                src="img/book8.jpg"
+                alt="Another Crusoe-adjacent book or narrative."
+              />
+              <div class="highlight-body">
+                <h3>Book Eight Title</h3>
+                <p>
+                  Brief note on how this text shares themes, settings, or
+                  narrative patterns with Crusoe.
+                </p>
+                <span class="highlight-link">View collection →</span>
+              </div>
+            </a>
+
+            <!-- 9. Book 9 -->
+            <a href="collections/book9.html" class="highlight-card">
+              <img
+                src="img/book9.jpg"
+                alt="Book connected to Robinson Crusoe through genre, imagery, or geography."
+              />
+              <div class="highlight-body">
+                <h3>Book Nine Title</h3>
+                <p>
+                  Final collection in the set—edit this copy to match your
+                  chosen source.
+                </p>
+                <span class="highlight-link">View collection →</span>
+              </div>
+            </a>
           </div>
-
-          <div class="collection-sort">
-            <label for="sort-by">Sort by</label>
-            <select id="sort-by" name="sort-by">
-              <option value="year">Year (earliest first)</option>
-              <option value="year-desc">Year (latest first)</option>
-              <option value="title">Title A–Z</option>
-              <option value="type">Type</option>
-            </select>
-          </div>
-        </section>
-
-        <!-- Grid of works -->
-        <section class="collection-grid" aria-label="Collection items">
-          <!-- Card 1 -->
-          <article class="work-card">
-            <a href="collection-crusoe.html" class="work-card-image-link">
-              <img
-                src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80"
-                alt="Old book lying open on a desk."
-              />
-            </a>
-            <div class="work-card-body">
-              <p class="work-card-type">Edition of Crusoe</p>
-              <h3 class="work-card-title">
-                <a href="collection-crusoe.html"><em>Robinson Crusoe</em> (1719)</a>
-              </h3>
-              <p class="work-card-meta">Daniel Defoe · London</p>
-              <p class="work-card-text">
-                Core map for the project, tracing Crusoe’s route from England to the island and back.
-              </p>
-            </div>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="work-card">
-            <a href="collection-voyage-a.html" class="work-card-image-link">
-              <img
-                src="https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?auto=format&fit=crop&w=800&q=80"
-                alt="Detail of an antique world map."
-              />
-            </a>
-            <div class="work-card-body">
-              <p class="work-card-type">Travel narrative</p>
-              <h3 class="work-card-title">
-                <a href="collection-voyage-a.html">Voyage Collection A</a>
-              </h3>
-              <p class="work-card-meta">Author Name · Place, Year</p>
-              <p class="work-card-text">
-                Map plotting the real-world route that informs Crusoe’s fictional geography.
-              </p>
-            </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="work-card">
-            <a href="collection-voyage-b.html" class="work-card-image-link">
-              <img
-                src="https://images.unsplash.com/photo-1500534314211-0a24cd03f2c0?auto=format&fit=crop&w=800&q=80"
-                alt="Close-up of a nautical chart and compass."
-              />
-            </a>
-            <div class="work-card-body">
-              <p class="work-card-type">Travel narrative</p>
-              <h3 class="work-card-title">
-                <a href="collection-voyage-b.html">Voyage Collection B</a>
-              </h3>
-              <p class="work-card-meta">Author Name · Place, Year</p>
-              <p class="work-card-text">
-                Island-centred narrative used to compare Crusoe’s island with other imagined spaces.
-              </p>
-            </div>
-          </article>
-
-          <!-- Duplicate and customise more cards as needed -->
         </section>
       </div>
     </main>
 
-    <!-- Footer -->
-    <footer>
+    <footer class="site-footer">
       <div class="footer-inner">
         <span>© 2025 Mapping Robinson Crusoe</span>
-        <div class="footer-links">
-          <a href="contact.html">Contact</a>
-          <a href="#">Accessibility</a>
-          <a href="#">Imprint</a>
-        </div>
+        <span>Created as a digital exhibit project</span>
       </div>
     </footer>
-  </div>
-</body>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const header = document.querySelector(".site-header");
+        const navToggle = document.querySelector(".nav-toggle");
+        if (navToggle) {
+          navToggle.addEventListener("click", () => {
+            header.classList.toggle("is-open");
+          });
+        }
+      });
+    </script>
+  </body>
 </html>
