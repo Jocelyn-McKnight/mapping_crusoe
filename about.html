@@ -36,13 +36,14 @@
       </div>
     </header>
 
-    <main class="main">
+            <main class="main">
       <div class="container">
-        <!-- Intro -->
-        <section class="page-intro">
-          <p class="eyebrow">About</p>
-          <h1>The Origins</h1>
-          <p>
+        <!-- 1. Hero / collections slider -->
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-text">
+            <p class="eyebrow">Digital exhibit</p>
+            <h1 id="hero-title">The Origin</h1>
+            <p>
             The Mapping Robinson Crusoe Project was created for the final project of the 
             English 4400: Violent Voyages course at the University of Lethbridge Fall 2025.
             The Creator, Jocelyn McKnight, Came to the idea when thinking about movement in 
@@ -55,6 +56,92 @@
             inspired Robinson Crusoe. The mapping project was the perfect way to get involved in the
             debate and use computational tools to provide more evidence.
           </p>
+
+            <div class="hero-actions">
+              <a class="btn-primary" href="collections.html">
+                Explore collections
+              </a>
+              <a class="btn-ghost" href="mapping.html"> View the map </a>
+            </div>
+          </div>
+
+ <!-- Slider: each slide is a different image of Robinson Crusoe -->
+        <div
+          class="hero-slider"
+          aria-label="Iconic images of Robinson Crusoe"
+        >
+          <div class="hero-slide is-active">
+            <div class="hero-slide-image">
+              <img
+                src="img/crusoe1.jpg"
+                alt="Crusoe on beach."
+              />
+            </div>
+            <div class="hero-slide-caption">
+              <p class="eyebrow">Robinson Crusoe</p>
+              <h2>Crusoe</h2>
+              <p>
+                Crusoe on beach.
+              </p>
+            </div>
+          </div>
+
+          <div class="hero-slide">
+            <div class="hero-slide-image">
+              <img
+                src="img/crusoe2.jpg"
+                alt="Crusoe sitting on rock."
+              />
+            </div>
+            <div class="hero-slide-caption">
+              <p class="eyebrow">Robinson Crusoe</p>
+              <h2>Crusoe</h2>
+              <p>
+                Crusoe sitting on rock.
+              </p>
+            </div>
+          </div>
+
+          <div class="hero-slide">
+            <div class="hero-slide-image">
+              <img
+                src="img/crusoe3.jpg"
+                alt="Crusoe talking to Parrot"
+              />
+            </div>
+            <div class="hero-slide-caption">
+              <p class="eyebrow">Robinson Crusoe</p>
+              <h2>Crusoe</h2>
+              <p>
+                Crusoe talking to Parrot
+              </p>
+            </div>
+          </div>
+
+          <!-- Slider controls -->
+          <div class="hero-dots" aria-hidden="true">
+            <button data-slide="0" class="is-active"></button>
+            <button data-slide="1"></button>
+            <button data-slide="2"></button>
+          </div>
+
+          <button
+            class="hero-slide-control prev"
+            type="button"
+            aria-label="Previous Crusoe image"
+            data-slider="prev"
+          >
+            ‹
+          </button>
+          <button
+            class="hero-slide-control next"
+            type="button"
+            aria-label="Next Crusoe image"
+            data-slider="next"
+          >
+            ›
+          </button>
+        </div>
         </section>
 
         <!-- About the project -->
