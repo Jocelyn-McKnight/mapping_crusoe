@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Comparative Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand">
+          <div class="brand-mark">RC</div>
+          <div class="brand-text">
+            <span class="brand-title">Mapping Robinson Crusoe</span>
+            <span class="brand-subtitle">Digital Exhibit</span>
+          </div>
+        </a>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span class="nav-toggle-box">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+          </span>
+        </button>
+
+        <nav class="site-nav">
+          <a href="index.html">Home</a>
+          <a href="comparartive.html">Comparative Map</a>
+          <a href="collections.html">Collections</a>
+          <a href="mapping.html" class="is-active">Mapping</a>
+          <a href="about.html">About the project</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <!-- Intro -->
+        <section class="page-intro">
+          <p class="eyebrow">Mapping</p>
+          <h1>Comparative map of all collections</h1>
+          <p>
+            This map brings together locations from all nine books in the
+            exhibit. It visualizes how <em>Robinson Crusoe</em> and its potential
+            sources cluster in particular regions, routes, and coastlines.
+          </p>
+        </section>
+
+        <!-- Large rounded comparative map -->
+        <section class="page-section">
+          <figure class="map-figure">
+            <img
+              src="img/map-comparative.png"
+              alt="Comparative map showing locations from Robinson Crusoe and all related source texts."
+            />
+            <figcaption class="map-figure-caption">
+              The comparative map overlays routes and places from all nine
+              collections, highlighting shared ports, overlapping sea routes,
+              and areas that are unique to a single text.
+            </figcaption>
+          </figure>
+        </section>
+
+        <!-- Text box underneath, same visual language as the rest of the site -->
+        <section class="page-section">
+          <div class="mapping-text-card">
+            <h2>Reading the comparative map</h2>
+            <p>
+              Use this map to compare how different texts in the exhibit imagine
+              travel, distance, and isolation. Some books cluster along
+              well-established imperial and commercial routes, while others push
+              outward toward more speculative or ambiguous locations.
+            </p>
+            <p>
+              You might start by looking for overlaps: ports, islands, or
+              regions that appear in multiple works. Then notice what is missing
+              or displaced—places that Crusoe alludes to indirectly, or routes
+              that are altered, simplified, or exaggerated.
+            </p>
+            <p>
+              The map is not meant as a definitive reconstruction of any single
+              journey, but as a way of seeing how these texts share a common
+              geography while also reworking it. As you move between the map and
+              the <a href="collections.html">individual collections</a>, think
+              about how changes in setting also reshape genre, character, and
+              narrative emphasis.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© 2025 Mapping Robinson Crusoe</span>
+        <span>Created as a digital exhibit project</span>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const header = document.querySelector(".site-header");
+        const navToggle = document.querySelector(".nav-toggle");
+        if (navToggle) {
+          navToggle.addEventListener("click", () => {
+            header.classList.toggle("is-open");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
+
