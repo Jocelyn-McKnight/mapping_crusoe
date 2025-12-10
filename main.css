@@ -538,6 +538,30 @@ a:hover {
   font-size: 0.95rem;
 }
 
+/* ---------- Map figure on collection pages ---------- */
+
+.map-figure {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  background: var(--card-bg);
+}
+
+.map-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.map-figure-caption {
+  padding: 0.9rem 1.2rem 1.1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+}
+
 /* ---------- Footer ---------- */
 
 .site-footer {
