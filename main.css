@@ -4,12 +4,12 @@
    ========================================= */
 
 :root {
-  --bg: #f4efe8;
+  --bg: #FCC583;;
   --card-bg: #ffffff;
   --text-main: #222222;
   --text-muted: #666666;
-  --accent: #1d3f6e;        /* deep blue */
-  --accent-soft: #dbe3f3;
+  --accent: #D68A2D;        /* deep blue */
+  --accent-soft: #CC9E66;
   --border-subtle: #ded6c9;
 
   --radius-lg: 24px;
