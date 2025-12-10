@@ -1,1 +1,109 @@
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A New Voyage and Description of the Isthmus of America</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../main.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="../index.html" class="brand">
+          <div class="brand-mark">RC</div>
+          <div class="brand-text">
+            <span class="brand-title">Mapping Robinson Crusoe</span>
+            <span class="brand-subtitle">Digital Exhibit</span>
+          </div>
+        </a>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span class="nav-toggle-box">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+          </span>
+        </button>
+
+        <nav class="site-nav">
+          <a href="../index.html">Home</a>
+          <a href="../comparative.html">Comparative Map</a>
+          <a href="../collections.html" class="is-active">Collections</a>
+          <a href="../mapping.html">Mapping</a>
+          <a href="../about.html">About the project</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <section class="page-intro">
+          <p class="eyebrow">Collection</p>
+          <h1>A New Voyage and Description of the Isthmus of America (1695)</h1>
+        </section>
+
+        <!-- Main image / book card -->
+        <section class="page-section">
+          <div class="welcome">
+            <div class="welcome-image">
+              <img
+                src="../img/lionelw.jpg"
+                alt="A New Voyage and Description of the Isthmus of America."
+              />
+            </div>
+            <article class="welcome-text">
+              <h2>About this Text</h2>
+              <p>
+                Lionel Wafer recounts his jounrey in South America and his time with the Cuna people. He is a Welsh sailer and so part
+                of his journey was over the ocean. However, the majority of his movements are over land and in Panama, or more specifically
+                the Darien region. This text has much more local movements then stretching voyages as seen with some of the other such as
+                Robinson Crusoe
+              </p>
+              <p>
+                Much of the plot takes place with the Cuna people as Wafer conducts a sort of pseudo-ethnogrpahic account. He details the region
+                to the best of his ability and even provides the reader with a few maps of Derien. Wafer dcuments the geography and environment
+                of Isthmus, as well as the cultural practices of the Cuna people who he is stauing with.
+              </p>
+              <p>
+               This would have been interesting to map against Robinson Crusoe because of the proximity to Crusoe's fictioinal island. however it could not be accomplished at this moment.
+                This is because we could not find a good text that was processed. There exists many scans of the novel but none with OCR. This would be a good addition
+                the comparative map.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="page-section">
+          <p>
+            <a href="../collections.html" class="highlight-link">
+              ← Back to all collections
+            </a>
+          </p>
+        </section>
+      </div>
+    </main>
+
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© 2025 Mapping Robinson Crusoe</span>
+        <span>Created as a digital exhibit project</span>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const header = document.querySelector(".site-header");
+        const navToggle = document.querySelector(".nav-toggle");
+        if (navToggle) {
+          navToggle.addEventListener("click", () => {
+            header.classList.toggle("is-open");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
+
