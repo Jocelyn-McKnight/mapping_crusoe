@@ -562,6 +562,26 @@ a:hover {
   border-top: 1px solid var(--border-subtle);
 }
 
+/* ---------- Code block styling on mapping page ---------- */
+
+.code-block {
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-subtle);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+.code-block code {
+  white-space: pre;
+}
+
 /* ---------- Footer ---------- */
 
 .site-footer {
